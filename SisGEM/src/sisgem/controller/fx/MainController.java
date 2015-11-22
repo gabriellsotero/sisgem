@@ -94,8 +94,6 @@ public class MainController implements Initializable {
 		     {
 		          if(newValue.booleanValue())
 		               System.out.println("Showing|Clicked");
-		          else
-		               System.out.println("Not showing|Clicked again");
 		     }
 		               
 		});
