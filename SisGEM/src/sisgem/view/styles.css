@@ -1,0 +1,36 @@
+.root{
+    -fx-font-size: 10pt;
+    -fx-font-family: "Trebuchet MS";
+    -fx-base: rgb(11,72,107);
+    -fx-background: rgb(225,240,203);
+}
+
+.menu .label{
+	-fx-font-weight: bold;
+}
+
+.menu-item:focused{
+	-fx-background-color: rgb(11,72,107);
+}
+
+.context-menu{
+	-fx-background-color: rgb(6,41,61);	
+}
+
+#text_title{
+	-fx-font-size: 20pt;
+	-fx-font-family: "Segoe UI";
+	-fx-font-weight: bold;
+	-fx-fill: linear-gradient(to bottom, #0b486b 0%,#3b8686 100%);
+}
+
+#borderpane_title{
+	-fx-background-color: linear-gradient(to top, #E1EFCB 0%,#A8DBA8 100%);
+}
+
+#borderpane_footer{
+	-fx-background-color: linear-gradient(to bottom, #E1EFCB 0%,#A8DBA8 100%);
+}
+#borderpane_footer .label{
+	-fx-font-weight: bold;
+}

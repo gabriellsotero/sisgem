@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import java.net.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import java.net.URL?>
+<?scenebuilder-stylesheet styles.css?>
+
+<BorderPane maxHeight="Infinity" maxWidth="Infinity" minHeight="0.0" minWidth="0.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sisgem.controller.fx.MainController">
+   <bottom>
+      <BorderPane fx:id="borderpane_footer" prefHeight="30.0" prefWidth="640.0" BorderPane.alignment="CENTER">
+         <right>
+            <Label fx:id="label_userdata" text=" Login: vinialmeida | Perfil: Administrador" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </BorderPane.margin></Label>
+         </right>
+         <left>
+            <Label fx:id="label_version" text="SisGEM v. 1.0" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </BorderPane.margin></Label>
+         </left>
+      </BorderPane>
+   </bottom>
+   <top>
+      <VBox fx:id="vbox_main" prefHeight="75.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar fx:id="menubar_main">
+              <menus>
+                <Menu fx:id="menu_home" mnemonicParsing="false" text="Home" />
+                <Menu fx:id="menu_concepts" mnemonicParsing="false" text="Conceitos">
+                  <items>
+                    <MenuItem fx:id="menuitem_new_concept" mnemonicParsing="false" text="Cadastrar conceito" />
+                        <MenuItem fx:id="menuitem_list_concepts" mnemonicParsing="false" text="Visualizar conceitos" />
+                  </items>
+                </Menu>
+                <Menu fx:id="menu_events" mnemonicParsing="false" text="Eventos">
+                  <items>
+                    <MenuItem fx:id="menuitem_list_events" mnemonicParsing="false" text="Visualizar eventos" />
+                  </items>
+                </Menu>
+                  <Menu fx:id="menu_register" mnemonicParsing="false" text="Cadastros">
+                    <items>
+                      <MenuItem fx:id="menuitem_venues" mnemonicParsing="false" text="Cadastro de locais" />
+                        <MenuItem fx:id="menuitem_artists" mnemonicParsing="false" text="Cadastro de recursos artísticos" />
+                        <MenuItem fx:id="menuitem_positions" mnemonicParsing="false" text="Cadastro de funções" />
+                        <MenuItem fx:id="menuitem_providers" mnemonicParsing="false" text="Cadastro de prestadores de serviço" />
+                        <MenuItem fx:id="menuitem_materials" mnemonicParsing="false" text="Cadastro de materiais" />
+                        <MenuItem fx:id="menuitem_users" mnemonicParsing="false" text="Cadastro de usuários" />
+                    </items>
+                  </Menu>
+                  <Menu fx:id="menu_exit" mnemonicParsing="false" text="Sair" />
+              </menus>
+            </MenuBar>
+            <BorderPane fx:id="borderpane_title" prefHeight="200.0" prefWidth="200.0">
+               <center>
+                  <Text fx:id="text_title" strokeType="OUTSIDE" strokeWidth="1.0" text="Sistema de Gestão de Eventos Musicais" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+         </children>
+      </VBox>
+   </top>
+</BorderPane>
