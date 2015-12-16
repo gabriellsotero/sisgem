@@ -7,7 +7,11 @@ public class ProviderEventRole {
 	private IntegerProperty code;
 	private StringProperty name;
 	
-	//TODO 094 - Constructor
+	public ProviderEventRole(int cCode, String cName)
+	{
+		code = new SimpleIntegerProperty(cCode);
+		name = new SimpleStringProperty(cName);
+	}
 	
 	public IntegerProperty codeProperty() {
 		return this.code;

@@ -10,7 +10,7 @@ import java.util.List;
 public class Event {
 	private IntegerProperty code;
 	private StringProperty name;
-	private IntegerProperty venue;
+	private ObjectProperty<Venue> venue;
 	private ObjectProperty<LocalDateTime> dateTime;
 	private StringProperty description;
 	private ObjectProperty<EventStatus> status;
@@ -26,7 +26,6 @@ public class Event {
 	private ObjectProperty<User> creator;
 	private ObjectProperty<User> evaluator;
 	private ObjectProperty<Concept> originator;
-
 	private ObjectProperty<List<ArtistEvent>> artistsList;
 	private ObjectProperty<List<MaterialEvent>> materialsList;
 	private ObjectProperty<List<ProviderEvent>> providersList;
@@ -34,7 +33,42 @@ public class Event {
 	private ObjectProperty<List<EventLotTicket>> ticketsList;
 	private ObjectProperty<List<EventOrderedAction>> actionsList;
 	
-	//TODO 088 - Constructor
+	public Event (int cCode, String cName, Venue cVenue,
+					LocalDateTime cDateTime, String cDescription, EventStatus cStatus,
+					String cStatusText, LocalDate cDateCreated, String cComments,
+					int cAttending, int cPaying, int cFbAttendees,
+					int cBirthdayLists, String cCompetitors, String cEvaluation,
+					User cCreator, User cEvaluator, Concept cOriginator,
+					List<ArtistEvent> cArtistsList, List<MaterialEvent> cMaterialsList,
+					List<ProviderEvent> cProvidersList, List<EventEntry> cEntriesList,
+					List<EventLotTicket> cTicketsList, List<EventOrderedAction> cActionsList)
+	{
+		code = new SimpleIntegerProperty(cCode);
+		name = new SimpleStringProperty(cName);
+		venue = new SimpleObjectProperty<Venue>(cVenue);
+		dateTime = new SimpleObjectProperty<LocalDateTime>(cDateTime);
+		description = new SimpleStringProperty(cDescription);
+		status = new SimpleObjectProperty<EventStatus>(cStatus);
+		statusText = new SimpleStringProperty(cStatusText);
+		dateCreated = new SimpleObjectProperty<LocalDate>(cDateCreated);
+		comments = new SimpleStringProperty(cComments);
+		attending = new SimpleIntegerProperty(cAttending);
+		paying = new SimpleIntegerProperty(cPaying);
+		fbAttendees = new SimpleIntegerProperty(cFbAttendees);
+		birthdayLists = new SimpleIntegerProperty(cBirthdayLists);
+		competitors = new SimpleStringProperty(cCompetitors);
+		evaluation = new SimpleStringProperty(cEvaluation);
+		creator = new SimpleObjectProperty<User>(cCreator);
+		evaluator = new SimpleObjectProperty<User>(cEvaluator);
+		originator = new SimpleObjectProperty<Concept>(cOriginator);
+		artistsList = new SimpleObjectProperty<List<ArtistEvent>>(cArtistsList);
+		materialsList = new SimpleObjectProperty<List<MaterialEvent>>(cMaterialsList);
+		providersList = new SimpleObjectProperty<List<ProviderEvent>>(cProvidersList);
+		entriesList = new SimpleObjectProperty<List<EventEntry>>(cEntriesList);
+		ticketsList = new SimpleObjectProperty<List<EventLotTicket>>(cTicketsList);
+		actionsList = new SimpleObjectProperty<List<EventOrderedAction>>(cActionsList);
+	}
+	
 	
 	public IntegerProperty codeProperty() {
 		return this.code;
@@ -59,19 +93,19 @@ public class Event {
 	public void setName(final java.lang.String name) {
 		this.nameProperty().set(name);
 	}
-	
-	public IntegerProperty venueProperty() {
+
+	public ObjectProperty<Venue> venueProperty() {
 		return this.venue;
 	}
 	
-	public int getVenue() {
+	public sisgem.model.Venue getVenue() {
 		return this.venueProperty().get();
 	}
 	
-	public void setVenue(final int venue) {
+	public void setVenue(final sisgem.model.Venue venue) {
 		this.venueProperty().set(venue);
-	}
-	
+	}	
+		
 	public ObjectProperty<LocalDateTime> dateTimeProperty() {
 		return this.dateTime;
 	}
@@ -322,6 +356,6 @@ public class Event {
 	
 	public void setActionsList(final java.util.List<sisgem.model.EventOrderedAction> actionsList) {
 		this.actionsListProperty().set(actionsList);
-	}	
+	}
 	
 }

@@ -3,6 +3,9 @@ package sisgem.model;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleFloatProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 
 public class MaterialEvent {
 	
@@ -10,7 +13,12 @@ public class MaterialEvent {
 	private IntegerProperty qty;
 	private FloatProperty value;
 	
-	//TODO 101 - Constructor	
+	public MaterialEvent(Material cMaterial, int cQty, float cValue)
+	{
+		material = new SimpleObjectProperty<Material>(cMaterial);
+		qty = new SimpleIntegerProperty(cQty);
+		value = new SimpleFloatProperty(cValue);
+	}
 
 	public ObjectProperty<Material> materialProperty() {
 		return this.material;

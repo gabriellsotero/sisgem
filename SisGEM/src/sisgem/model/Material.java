@@ -7,11 +7,19 @@ public class Material {
 	
 	private IntegerProperty code;
 	private StringProperty name;
-	private ObjectProperty<Image> photo;
+	private ObjectProperty<byte[]> photo;
 	private StringProperty comments;
 	private StringProperty measureUnit;
 	
-	//TODO 092 Constructor
+	public Material(int cCode, String cName, byte[] cPhoto,
+					String cComments, String cMeasureUnit)
+	{
+		code = new SimpleIntegerProperty(cCode);
+		name = new SimpleStringProperty(cName);
+		photo = new SimpleObjectProperty<byte[]>(cPhoto);
+		comments = new SimpleStringProperty(cComments);
+		measureUnit = new SimpleStringProperty(cMeasureUnit);		
+	}
 	
 	public IntegerProperty codeProperty() {
 		return this.code;
@@ -37,15 +45,15 @@ public class Material {
 		this.nameProperty().set(name);
 	}
 	
-	public ObjectProperty<Image> photoProperty() {
+	public ObjectProperty<byte[]> photoProperty() {
 		return this.photo;
 	}
 	
-	public javafx.scene.image.Image getPhoto() {
+	public byte[] getPhoto() {
 		return this.photoProperty().get();
 	}
 	
-	public void setPhoto(final javafx.scene.image.Image photo) {
+	public void setPhoto(final byte[] photo) {
 		this.photoProperty().set(photo);
 	}
 	

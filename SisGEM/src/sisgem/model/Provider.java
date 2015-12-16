@@ -8,12 +8,22 @@ public class Provider {
 	private IntegerProperty code;
 	private StringProperty name;
 	private ObjectProperty<ProviderEventRole> eventRole;
-	private ObjectProperty<Image> photo;
+	private ObjectProperty<byte[]> photo;
 	private ObjectProperty<Contact> contact;
 	private FloatProperty value;
 	private StringProperty comment;
 	
-	//TODO 093 - Constructor
+	public Provider(int cCode, String cName, ProviderEventRole cEventRole,
+					byte[] cPhoto, Contact cContact, float cValue, String cComment)
+	{
+		code = new SimpleIntegerProperty(cCode);
+		name = new SimpleStringProperty(cName);
+		eventRole = new SimpleObjectProperty<ProviderEventRole>(cEventRole);
+		photo = new SimpleObjectProperty<byte[]>(cPhoto);
+		contact = new SimpleObjectProperty<Contact>(cContact);
+		value = new SimpleFloatProperty(cValue);
+		comment = new SimpleStringProperty(cComment);		
+	}
 	
 	public IntegerProperty codeProperty() {
 		return this.code;
@@ -51,15 +61,15 @@ public class Provider {
 		this.eventRoleProperty().set(eventRole);
 	}
 	
-	public ObjectProperty<Image> photoProperty() {
+	public ObjectProperty<byte[]> photoProperty() {
 		return this.photo;
 	}
 	
-	public javafx.scene.image.Image getPhoto() {
+	public byte[] getPhoto() {
 		return this.photoProperty().get();
 	}
 	
-	public void setPhoto(final javafx.scene.image.Image photo) {
+	public void setPhoto(final byte[] photo) {
 		this.photoProperty().set(photo);
 	}
 	

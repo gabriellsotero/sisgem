@@ -2,14 +2,19 @@ package sisgem.model;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 
 public class ProviderEvent {
 	
 	private ObjectProperty<Provider> provider;
 	private IntegerProperty qty;
 	
-	//TODO 102 - Constructor	
-	
+	public ProviderEvent(Provider cProvider, int cQty)
+	{
+		provider = new SimpleObjectProperty<Provider>(cProvider);
+		qty = new SimpleIntegerProperty(cQty);
+	}
 	public ObjectProperty<Provider> providerProperty() {
 		return this.provider;
 	}

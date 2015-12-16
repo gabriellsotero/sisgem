@@ -9,7 +9,14 @@ public class TaskComment {
 	private ObjectProperty<User> user;
 	private ObjectProperty<Task> task;
 	
-	//TODO 096 - Constructor
+	public TaskComment(int cCode, String cComment, User cUser, Task cTask)
+	{
+		code = new SimpleIntegerProperty(cCode);
+		comment = new SimpleStringProperty(cComment);
+		user = new SimpleObjectProperty<User>(cUser);
+		task = new SimpleObjectProperty<Task>(cTask);
+		
+	}
 	
 	public IntegerProperty codeProperty() {
 		return this.code;

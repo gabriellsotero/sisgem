@@ -1,14 +1,17 @@
 package sisgem.model;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.*;
 
 public class MaterialConcept {
 	
 	private ObjectProperty<Material> material;
 	private IntegerProperty qty;
 	
-	//TODO 098 - Constructor
+	public MaterialConcept(Material cMaterial, int cQty)
+	{
+		material = new SimpleObjectProperty<Material>(cMaterial);
+		qty = new SimpleIntegerProperty(cQty);
+	}
 	
 	public ObjectProperty<Material> materialProperty() {
 		return this.material;

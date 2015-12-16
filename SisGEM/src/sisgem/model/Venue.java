@@ -11,7 +11,16 @@ public class Venue {
 	private ObjectProperty<Contact> contact;
 	private StringProperty comment;
 	
-	//TODO 097 - Constructor
+	public Venue (int cCode, String cName, String cDescription,
+				int cMaxCapacity, Contact cContact, String cComment)
+	{
+		code = new SimpleIntegerProperty(cCode);
+		name = new SimpleStringProperty(cName);
+		description = new SimpleStringProperty(cDescription);
+		maxCapacity = new SimpleIntegerProperty(cMaxCapacity);
+		contact = new SimpleObjectProperty<Contact>(cContact);
+		comment = new SimpleStringProperty(cComment);
+	}
 	
 	public IntegerProperty codeProperty() {
 		return this.code;
