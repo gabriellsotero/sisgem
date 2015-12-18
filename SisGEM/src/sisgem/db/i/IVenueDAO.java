@@ -2,7 +2,6 @@ package sisgem.db.i;
 
 import java.util.List;
 
-import sisgem.model.Concept;
 import sisgem.model.Venue;
 
 public interface IVenueDAO {
@@ -13,7 +12,7 @@ public interface IVenueDAO {
 	/* RETRIEVE */
 	public List<Venue> listAllByConcept(int conceptCode);
 	public List<Venue> listAll();
-	public Venue findByCode();
+	public Venue findByCode(int code);
 	
 	/* UPDATE */
 	public void update(Venue v);

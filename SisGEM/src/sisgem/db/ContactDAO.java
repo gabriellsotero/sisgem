@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import sisgem.db.i.IContactDAO;
-import sisgem.model.Alert;
 import sisgem.model.Contact;
 
 public class ContactDAO implements IContactDAO {

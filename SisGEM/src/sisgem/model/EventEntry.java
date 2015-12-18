@@ -1,23 +1,25 @@
 package sisgem.model;
 
 import javafx.beans.property.*;
+import sisgem.model.enums.EventEntryTypes;
 
 public class EventEntry {
 	
 	private IntegerProperty code;
-	private ObjectProperty<EventEntry> type;
+	private ObjectProperty<EventEntryTypes> type;
 	private StringProperty typeText; //notDB
-	private FloatProperty vl;
+	private StringProperty description;
+	private FloatProperty value;
 	private IntegerProperty qty;
 	private ObjectProperty<Event> event;
 	
-	public EventEntry (int cCode, EventEntry cType, String cTypeText,
+	public EventEntry (int cCode, EventEntryTypes cType, String cTypeText,
 						float cValue, int cQty, Event cEvent)
 	{
 		code = new SimpleIntegerProperty(cCode);
-		type = new SimpleObjectProperty<EventEntry>(cType);
+		type = new SimpleObjectProperty<EventEntryTypes>(cType);
 		typeText = new SimpleStringProperty(cTypeText);
-		vl = new SimpleFloatProperty(cValue);
+		value = new SimpleFloatProperty(cValue);
 		qty = new SimpleIntegerProperty(cQty);
 		event = new SimpleObjectProperty<Event>(cEvent);
 	}
@@ -34,15 +36,15 @@ public class EventEntry {
 		this.codeProperty().set(code);
 	}
 	
-	public ObjectProperty<EventEntry> typeProperty() {
+	public ObjectProperty<EventEntryTypes> typeProperty() {
 		return this.type;
 	}
 	
-	public sisgem.model.EventEntry getType() {
+	public EventEntryTypes getType() {
 		return this.typeProperty().get();
 	}
 	
-	public void setType(final sisgem.model.EventEntry type) {
+	public void setType(final EventEntryTypes type) {
 		this.typeProperty().set(type);
 	}
 	
@@ -58,8 +60,23 @@ public class EventEntry {
 		this.typeTextProperty().set(typeText);
 	}
 	
+
+	public StringProperty descriptionProperty() {
+		return this.description;
+	}
+	
+
+	public java.lang.String getDescription() {
+		return this.descriptionProperty().get();
+	}
+	
+
+	public void setDescription(final java.lang.String description) {
+		this.descriptionProperty().set(description);
+	}
+	
 	public FloatProperty valueProperty() {
-		return this.vl;
+		return this.value;
 	}
 	
 	public float getValue() {
@@ -93,9 +110,5 @@ public class EventEntry {
 	public void setEvent(final sisgem.model.Event event) {
 		this.eventProperty().set(event);
 	}
-	
-	
-	
-	
 
 }

@@ -1,6 +1,6 @@
 package sisgem.model.enums;
 
-public enum EntryTypes {
+public enum EventEntryTypes {
 	NOTUSED,
 	RECEITA,
 	DESPESA

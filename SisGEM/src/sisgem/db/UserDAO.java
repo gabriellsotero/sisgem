@@ -1,5 +1,8 @@
 package sisgem.db;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 import sisgem.db.i.IUserDAO;
@@ -9,7 +12,28 @@ public class UserDAO implements IUserDAO {
 
 	@Override
 	public void create(User u) {
-		//TODO 072		
+		Connection conn = Connect.connect();
+		PreparedStatement stmt = null;
+		
+		String sql = ""; //TODO
+		
+		try
+		{
+			stmt = conn.prepareStatement(sql);
+			
+			//TODO
+			
+			stmt.executeUpdate();
+		}
+		catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		
+		finally
+		{
+			Connect.close(conn, stmt, null);
+		}	
 	}
 
 	@Override
@@ -37,7 +61,28 @@ public class UserDAO implements IUserDAO {
 
 	@Override
 	public void delete(User u) {
-		//TODO 077		
+		Connection conn = Connect.connect();
+		PreparedStatement stmt = null;
+		
+		String sql = "DELETE FROM tb_user WHERE cd_user = ?";
+		
+		try
+		{
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, u.getCode());
+			stmt.executeUpdate();		
+		}
+		catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		
+		finally
+		{
+			Connect.close(conn, stmt, null);
+		}
+		
+		return;		
 	}
 	
 

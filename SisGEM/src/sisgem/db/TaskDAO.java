@@ -1,5 +1,8 @@
 package sisgem.db;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 import sisgem.db.i.ITaskDAO;
@@ -12,8 +15,28 @@ public class TaskDAO implements ITaskDAO {
 
 	@Override
 	public void create(Task t) {
-		//TODO 66
+		Connection conn = Connect.connect();
+		PreparedStatement stmt = null;
 		
+		String sql = ""; //TODO
+		
+		try
+		{
+			stmt = conn.prepareStatement(sql);
+			
+			//TODO
+			
+			stmt.executeUpdate();
+		}
+		catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		
+		finally
+		{
+			Connect.close(conn, stmt, null);
+		}		
 	}
 
 	@Override
@@ -47,15 +70,35 @@ public class TaskDAO implements ITaskDAO {
 	}
 
 	@Override
-	public List<Task> update() {
+	public List<Task> update(Task t) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Task> delete() {
-		// TODO Auto-generated method stub
-		return null;
+	public void delete(Task t) {
+		Connection conn = Connect.connect();
+		PreparedStatement stmt = null;
+		
+		String sql = "DELETE FROM tb_task WHERE cd_task = ?";
+		
+		try
+		{
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, t.getCode());
+			stmt.executeUpdate();		
+		}
+		catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		
+		finally
+		{
+			Connect.close(conn, stmt, null);
+		}
+		
+		return;	
 	}
 
 }

@@ -7,14 +7,12 @@ import java.sql.SQLException;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import sisgem.db.i.IConceptDAO;
 import sisgem.model.*;
-import sisgem.model.enums.AlertTypes;
 import sisgem.model.enums.ConceptStatus;
 
 public class ConceptDAO implements IConceptDAO{

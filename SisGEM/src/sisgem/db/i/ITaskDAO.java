@@ -18,8 +18,8 @@ public interface ITaskDAO {
 	public Task findByCode(int code);
 	
 	/* UPDATE */
-	public List <Task> update();
+	public List <Task> update(Task t);
 	
 	/* DELETE */
-	public List <Task> delete();
+	public void delete(Task t);
 }

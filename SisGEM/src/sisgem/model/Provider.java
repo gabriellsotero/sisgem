@@ -1,7 +1,6 @@
 package sisgem.model;
 
 import javafx.beans.property.*;
-import javafx.scene.image.Image;
 
 public class Provider {
 	

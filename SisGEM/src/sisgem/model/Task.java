@@ -21,13 +21,36 @@ public class Task {
 	private StringProperty description;
 	private ObjectProperty<LocalDate> targetDate;
 	private ObjectProperty<LocalDate> completedDate;
-	private StringProperty statusText;
-	private StringProperty typeText;
+	private StringProperty statusText; //not db
+	private StringProperty typeText; //not db
 	private BooleanProperty late;
 	
 	private ObjectProperty<List<TaskComment>> commentsList;
 
-	//TODO 095 - Constructor
+	public Task (int cCode, User cAccountable, Artist cArtist,
+				User cCreator, User cEvaluator, Event cEvent,
+				Material cMaterial, Provider cProvider, TaskStatus cStatus,
+				TaskTypes cType, String cDescription, LocalDate cTargetDate,
+				LocalDate cCompletedDate, String cStatusText, String cTypeText,
+				boolean cLate)
+	{
+		code = new SimpleIntegerProperty(cCode);
+		accountable = new SimpleObjectProperty<User>(cAccountable);
+		artist = new SimpleObjectProperty<Artist>(cArtist);
+		creator = new SimpleObjectProperty<User>(cCreator);
+		evaluator = new SimpleObjectProperty<User>(cEvaluator);
+		event = new SimpleObjectProperty<Event>(cEvent);
+		material = new SimpleObjectProperty<Material>(cMaterial);
+		provider = new SimpleObjectProperty<Provider>(cProvider);
+		status = new SimpleObjectProperty<TaskStatus>(cStatus);
+		type = new SimpleObjectProperty<TaskTypes>(cType);
+		description = new SimpleStringProperty(cDescription);
+		targetDate = new SimpleObjectProperty<LocalDate>(cTargetDate);
+		completedDate = new SimpleObjectProperty<LocalDate>(cCompletedDate);
+		statusText = new SimpleStringProperty(cStatusText);
+		typeText = new SimpleStringProperty(cTypeText);
+		late = new SimpleBooleanProperty(cLate);
+	}
 		
 	public IntegerProperty codeProperty() {
 		return this.code;

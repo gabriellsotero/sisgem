@@ -12,7 +12,7 @@ public interface IProviderDAO {
 	
 	/* RETRIEVE */
 	public Provider findByCode(int provider);
-	public List<ProviderEvent> listAllByEvent();
+	public List<ProviderEvent> listAllByEvent(int eventCode);
 	public List<Provider> listAll();
 	
 	/* UPDATE */
