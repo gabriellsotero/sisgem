@@ -23,7 +23,7 @@ public class AlertDAO implements IAlertDAO {
 		try
 		{
 			stmt = conn.prepareStatement(sql);
-			
+
 			stmt.setString(1, a.getDescription());
 			Instant instant = a.getDate().toInstant(ZoneOffset.UTC);
 		    Date date = Date.from(instant);
@@ -33,7 +33,6 @@ public class AlertDAO implements IAlertDAO {
 			stmt.setInt(5, a.getType().ordinal());
 			stmt.setInt(6, a.getTask().getCode());
 			stmt.setInt(7, a.getConcept().getCode());
-			
 			stmt.executeUpdate();
 		}
 		
@@ -192,6 +191,7 @@ public class AlertDAO implements IAlertDAO {
 		try
 		{
 			stmt = conn.prepareStatement(sql);
+
 			stmt.setString(1, a.getDescription());
 			Instant instant = a.getDate().toInstant(ZoneOffset.UTC);
 		    Date date = Date.from(instant);
