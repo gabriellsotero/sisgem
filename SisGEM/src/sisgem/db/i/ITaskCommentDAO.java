@@ -11,7 +11,6 @@ public interface ITaskCommentDAO {
 	
 	/* RETRIEVE */
 	public List<TaskComment> listAllByTask(int taskCode);
-	public TaskComment listAllByCode();
 	
 	/* UPDATE */
 	public void update(TaskComment t);

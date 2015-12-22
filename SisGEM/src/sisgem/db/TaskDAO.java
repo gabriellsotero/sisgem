@@ -3,6 +3,8 @@ package sisgem.db;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 import sisgem.db.i.ITaskDAO;
@@ -18,13 +20,30 @@ public class TaskDAO implements ITaskDAO {
 		Connection conn = Connect.connect();
 		PreparedStatement stmt = null;
 		
-		String sql = ""; //TODO
+		String sql = "INSERT INTO tb_task(cd_task_type, "
+					+ "ds_task, dt_target, dt_completed, "
+					+ "cd_task_status, cd_event, cd_creator, "
+					+ "cd_evaluator, cd_accountable, cd_provider, "
+					+ "cd_artist, cd_material)"
+					+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try
 		{
 			stmt = conn.prepareStatement(sql);
 			
-			//TODO
+			stmt.setInt(1, t.getType().ordinal());
+			stmt.setString(2, t.getDescription());
+			Date date = Date.from(t.getTargetDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
+			stmt.setDate(3, new java.sql.Date(date.getTime()));
+			Date date2 = Date.from(t.getCompletedDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
+			stmt.setDate(4, new java.sql.Date(date2.getTime()));
+			stmt.setInt(5, t.getStatus().ordinal());
+			stmt.setInt(6, t.getEvent().getCode());
+			stmt.setInt(7, t.getCreator().getCode());
+			stmt.setInt(8, t.getEvaluator().getCode());
+			stmt.setInt(9, t.getProvider().getCode());
+			stmt.setInt(10, t.getArtist().getCode());
+			stmt.setInt(11, t.getMaterial().getCode());
 			
 			stmt.executeUpdate();
 		}
