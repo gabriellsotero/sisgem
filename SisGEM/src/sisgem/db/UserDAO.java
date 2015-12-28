@@ -2,11 +2,15 @@ package sisgem.db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
 import sisgem.db.i.IUserDAO;
+import sisgem.model.Task;
 import sisgem.model.User;
+import sisgem.model.enums.TaskStatus;
+import sisgem.model.enums.UserProfiles;
 
 public class UserDAO implements IUserDAO {
 
@@ -27,7 +31,7 @@ public class UserDAO implements IUserDAO {
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally
@@ -50,8 +54,55 @@ public class UserDAO implements IUserDAO {
 
 	@Override
 	public User findByLogin(String login) {
-		//TODO 075
-		return null;
+		Connection conn = Connect.connect();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+
+		String sql = "SELECT * FROM tb_user "
+					+ "NATURAL JOIN tb_user_profile "
+					+ "WHERE ds_user_login = ?";
+			
+		User u = null;
+		
+		try 
+		{
+			stmt = conn.prepareStatement(sql);
+			
+			stmt.setString(1, login);
+			
+			rs = stmt.executeQuery();			
+			
+			if (rs.next())
+			{
+				
+				UserProfiles profile = UserProfiles.values()[rs.getInt("cd_user_profile")];
+				
+				u = new User(
+						rs.getInt("cd_user"),
+						rs.getString("nm_user"),
+						rs.getBytes("ph_user"),
+						login,
+						rs.getString("ds_user_password"),
+						rs.getString("ds_user_salt"),
+						rs.getString("ds_user_email"),
+						profile,
+						rs.getString("nm_user_profile")
+				);
+			}
+			
+		}
+		catch (SQLException e)
+		{
+			System.err.println(this.getClass() + " " + e.getMessage());
+		}
+	
+		finally
+		{
+			Connect.close(conn, stmt, rs);
+		}
+		
+		return u;
+		
 	}
 
 	@Override
@@ -74,7 +125,7 @@ public class UserDAO implements IUserDAO {
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally

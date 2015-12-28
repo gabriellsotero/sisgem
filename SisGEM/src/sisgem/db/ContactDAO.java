@@ -32,7 +32,7 @@ public class ContactDAO implements IContactDAO {
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally
@@ -74,7 +74,7 @@ public class ContactDAO implements IContactDAO {
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 
 		finally
@@ -107,7 +107,7 @@ public class ContactDAO implements IContactDAO {
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally
@@ -133,7 +133,7 @@ public class ContactDAO implements IContactDAO {
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally

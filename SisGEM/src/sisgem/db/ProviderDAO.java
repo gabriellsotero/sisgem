@@ -9,7 +9,6 @@ import java.util.List;
 
 import sisgem.db.i.IProviderDAO;
 import sisgem.model.Contact;
-import sisgem.model.Material;
 import sisgem.model.Provider;
 import sisgem.model.ProviderEvent;
 import sisgem.model.ProviderEventRole;
@@ -39,7 +38,7 @@ public class ProviderDAO implements IProviderDAO {
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally
@@ -54,7 +53,7 @@ public class ProviderDAO implements IProviderDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT * FROM provider "
+		String sql = "SELECT * FROM tb_provider "
 				+ "WHERE cd_provider = ?";
 		
 		Provider p = null;
@@ -88,7 +87,7 @@ public class ProviderDAO implements IProviderDAO {
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 
 		finally
@@ -105,7 +104,8 @@ public class ProviderDAO implements IProviderDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT * FROM provider "
+		String sql = "SELECT * FROM tb_provider "
+				+ "NATURAL JOIN tb__event__provider "
 				+ "WHERE cd_event = ?";
 		
 		List<ProviderEvent> lst = new ArrayList<ProviderEvent>();
@@ -144,7 +144,7 @@ public class ProviderDAO implements IProviderDAO {
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 
 		finally
@@ -195,7 +195,7 @@ public class ProviderDAO implements IProviderDAO {
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 
 		finally
@@ -231,7 +231,7 @@ public class ProviderDAO implements IProviderDAO {
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally
@@ -255,7 +255,7 @@ public class ProviderDAO implements IProviderDAO {
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally

@@ -4,6 +4,7 @@ import javafx.beans.property.*;
 import sisgem.model.enums.*;
 
 import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
 import java.util.List;
 
 public class Task {
@@ -31,8 +32,8 @@ public class Task {
 				User cCreator, User cEvaluator, Event cEvent,
 				Material cMaterial, Provider cProvider, TaskStatus cStatus,
 				TaskTypes cType, String cDescription, LocalDate cTargetDate,
-				LocalDate cCompletedDate, String cStatusText, String cTypeText,
-				boolean cLate)
+				LocalDate cCompletedDate, String cStatusText, String cTypeText
+				)
 	{
 		code = new SimpleIntegerProperty(cCode);
 		accountable = new SimpleObjectProperty<User>(cAccountable);
@@ -49,7 +50,16 @@ public class Task {
 		completedDate = new SimpleObjectProperty<LocalDate>(cCompletedDate);
 		statusText = new SimpleStringProperty(cStatusText);
 		typeText = new SimpleStringProperty(cTypeText);
-		late = new SimpleBooleanProperty(cLate);
+		
+		if (this.getTargetDate().isBefore(LocalDate.now()))
+		{
+			late = new SimpleBooleanProperty(true);
+		}
+		else
+		{
+			late = new SimpleBooleanProperty(false);
+		}
+
 	}
 		
 	public IntegerProperty codeProperty() {

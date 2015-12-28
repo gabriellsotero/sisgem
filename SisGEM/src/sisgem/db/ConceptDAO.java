@@ -44,7 +44,7 @@ public class ConceptDAO implements IConceptDAO{
 		}		
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally
@@ -117,7 +117,7 @@ public class ConceptDAO implements IConceptDAO{
 		
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally
@@ -191,7 +191,7 @@ public class ConceptDAO implements IConceptDAO{
 		
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally
@@ -229,7 +229,7 @@ public class ConceptDAO implements IConceptDAO{
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally
@@ -256,7 +256,7 @@ public class ConceptDAO implements IConceptDAO{
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally

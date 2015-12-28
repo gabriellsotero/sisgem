@@ -37,7 +37,7 @@ public class MaterialDAO implements IMaterialDAO {
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally
@@ -78,7 +78,7 @@ public class MaterialDAO implements IMaterialDAO {
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 
 		finally
@@ -126,7 +126,7 @@ public class MaterialDAO implements IMaterialDAO {
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 
 		finally
@@ -174,7 +174,7 @@ public class MaterialDAO implements IMaterialDAO {
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 
 		finally
@@ -216,7 +216,7 @@ public class MaterialDAO implements IMaterialDAO {
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 
 		finally
@@ -250,7 +250,7 @@ public class MaterialDAO implements IMaterialDAO {
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally
@@ -274,7 +274,7 @@ public class MaterialDAO implements IMaterialDAO {
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally

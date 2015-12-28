@@ -61,7 +61,7 @@ public class LoggedUserController implements Initializable  {
 	private ObservableList<Task> getTasks()
 	{
 		TaskDAO taskDAO = new TaskDAO();
-		ArrayList <Task> arrayListTasks = (ArrayList<Task>) taskDAO.listAllPendingByAccUser(Login.getLoggedUser());
+		ArrayList <Task> arrayListTasks = (ArrayList<Task>) taskDAO.listAllPendingByAccUser(Login.getLoggedUser().getCode());
 		ObservableList<Task> observableListTasks = FXCollections.observableArrayList(arrayListTasks);
 		return observableListTasks;
 	}

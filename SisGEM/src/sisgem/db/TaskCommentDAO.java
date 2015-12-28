@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sisgem.db.i.ITaskCommentDAO;
-import sisgem.model.ProviderEventRole;
 import sisgem.model.Task;
 import sisgem.model.TaskComment;
 import sisgem.model.User;
@@ -34,7 +33,7 @@ public class TaskCommentDAO implements ITaskCommentDAO{
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally
@@ -80,7 +79,7 @@ public class TaskCommentDAO implements ITaskCommentDAO{
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 	
 		finally
@@ -112,7 +111,7 @@ public class TaskCommentDAO implements ITaskCommentDAO{
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally
@@ -136,7 +135,7 @@ public class TaskCommentDAO implements ITaskCommentDAO{
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally

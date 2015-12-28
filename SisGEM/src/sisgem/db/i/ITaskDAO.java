@@ -12,13 +12,13 @@ public interface ITaskDAO {
 	
 	/* RETRIEVE */
 	public List <Task> listAll();
-	public List <Task> listAllPendingByAccUser(User u);
-	public List <Task> listAllByEvent(Event e);
+	public List <Task> listAllPendingByAccUser(int userCode);
+	public List <Task> listAllByEvent(int eventCode);
 	public List <Task> listAllByStatus(TaskStatus ts);
 	public Task findByCode(int code);
 	
 	/* UPDATE */
-	public List <Task> update(Task t);
+	public void update(Task t);
 	
 	/* DELETE */
 	public void delete(Task t);

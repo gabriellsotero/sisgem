@@ -68,7 +68,7 @@ public class EventDAO implements IEventDAO {
 		}		
 		catch (SQLException ex)
 		{
-			System.out.println(ex.getMessage());
+			System.err.println(this.getClass() + " " + ex.getMessage());
 		}
 		
 		finally
@@ -159,7 +159,7 @@ public class EventDAO implements IEventDAO {
 
 		catch (SQLException ex)
 		{
-			System.out.println(ex.getMessage());
+			System.err.println(this.getClass() + " " + ex.getMessage());
 		}
 
 		finally
@@ -251,7 +251,7 @@ public class EventDAO implements IEventDAO {
 
 		catch (SQLException ex)
 		{
-			System.out.println(ex.getMessage());
+			System.err.println(this.getClass() + " " + ex.getMessage());
 		}
 
 		finally
@@ -302,7 +302,7 @@ public class EventDAO implements IEventDAO {
 		}		
 		catch (SQLException ex)
 		{
-			System.out.println(ex.getMessage());
+			System.err.println(this.getClass() + " " + ex.getMessage());
 		}
 		
 		finally
@@ -328,7 +328,7 @@ public class EventDAO implements IEventDAO {
 		}
 		catch (SQLException ex)
 		{
-			System.out.println(ex.getMessage());
+			System.err.println(this.getClass() + " " + ex.getMessage());
 		}
 		
 		finally

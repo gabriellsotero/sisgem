@@ -38,7 +38,7 @@ public class AlertDAO implements IAlertDAO {
 		
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally
@@ -103,7 +103,7 @@ public class AlertDAO implements IAlertDAO {
 		
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally
@@ -168,7 +168,7 @@ public class AlertDAO implements IAlertDAO {
 		
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally
@@ -208,7 +208,7 @@ public class AlertDAO implements IAlertDAO {
 		
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally
@@ -232,7 +232,7 @@ public class AlertDAO implements IAlertDAO {
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally

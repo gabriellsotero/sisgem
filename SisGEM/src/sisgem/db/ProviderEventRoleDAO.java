@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sisgem.db.i.IProviderEventRoleDAO;
-import sisgem.model.Material;
 import sisgem.model.ProviderEventRole;
 import sisgem.model.ProviderEventRoleConcept;
 
@@ -31,7 +30,7 @@ public class ProviderEventRoleDAO implements IProviderEventRoleDAO {
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally
@@ -68,7 +67,7 @@ public class ProviderEventRoleDAO implements IProviderEventRoleDAO {
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 	
 		finally
@@ -86,8 +85,8 @@ public class ProviderEventRoleDAO implements IProviderEventRoleDAO {
 		ResultSet rs = null;
 
 		String sql = "SELECT * FROM tb__concept__provider_eventrole "
-					+ "NATURAL JOIN tb_provider_eventrole"
-					+ "NATURAL JOIN tb_concept"
+					+ "NATURAL JOIN tb_provider_eventrole "
+					+ "NATURAL JOIN tb_concept "
 					+ "WHERE cd_concept = ?";
 		
 		List<ProviderEventRoleConcept> lst = new ArrayList<ProviderEventRoleConcept>();
@@ -113,7 +112,7 @@ public class ProviderEventRoleDAO implements IProviderEventRoleDAO {
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 	
 		finally
@@ -152,7 +151,7 @@ public class ProviderEventRoleDAO implements IProviderEventRoleDAO {
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 	
 		finally
@@ -182,7 +181,7 @@ public class ProviderEventRoleDAO implements IProviderEventRoleDAO {
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally
@@ -206,7 +205,7 @@ public class ProviderEventRoleDAO implements IProviderEventRoleDAO {
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally

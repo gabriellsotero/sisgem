@@ -40,7 +40,7 @@ public class ArtistDAO implements IArtistDAO {
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally
@@ -90,7 +90,7 @@ public class ArtistDAO implements IArtistDAO {
 		
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally
@@ -141,7 +141,7 @@ public class ArtistDAO implements IArtistDAO {
 		
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally
@@ -195,7 +195,7 @@ public class ArtistDAO implements IArtistDAO {
 		
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally
@@ -212,7 +212,7 @@ public class ArtistDAO implements IArtistDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT *.tb_artist, *.tb__event__artist FROM tb__event__artist "
+		String sql = "SELECT tb_artist.*, tb__event__artist.* FROM tb__event__artist "
 					+ "NATURAL JOIN tb_artist "
 					+ "NATURAL JOIN tb_event "
 					+ "WHERE cd_event = ?";
@@ -251,7 +251,7 @@ public class ArtistDAO implements IArtistDAO {
 		
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally
@@ -287,7 +287,7 @@ public class ArtistDAO implements IArtistDAO {
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally
@@ -313,7 +313,7 @@ public class ArtistDAO implements IArtistDAO {
 		}
 		catch (SQLException e)
 		{
-			System.out.println(e.getMessage());
+			System.err.println(this.getClass() + " " + e.getMessage());
 		}
 		
 		finally

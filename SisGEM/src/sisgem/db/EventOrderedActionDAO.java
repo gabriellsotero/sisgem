@@ -33,7 +33,7 @@ public class EventOrderedActionDAO implements IEventOrderedActionDAO {
 		}
 		catch (SQLException ex)
 		{
-			System.out.println(ex.getMessage());
+			System.err.println(this.getClass() + " " + ex.getMessage());
 		}
 		
 		finally
@@ -49,7 +49,7 @@ public class EventOrderedActionDAO implements IEventOrderedActionDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT * FROM tb_event_ordered_action "
+		String sql = "SELECT * FROM tb_event_ordered_actions "
 				+ "WHERE cd_event=?";
 		
 		List<EventOrderedAction> lst = new ArrayList<EventOrderedAction>();
@@ -79,7 +79,7 @@ public class EventOrderedActionDAO implements IEventOrderedActionDAO {
 		}		
 		catch (SQLException ex)
 		{
-			System.out.println(ex.getMessage());
+			System.err.println(this.getClass() + " " + ex.getMessage());
 		}
 
 		finally
@@ -124,7 +124,7 @@ public class EventOrderedActionDAO implements IEventOrderedActionDAO {
 		}
 		catch (SQLException ex)
 		{
-			System.out.println(ex.getMessage());
+			System.err.println(this.getClass() + " " + ex.getMessage());
 		}
 
 		finally
@@ -157,7 +157,7 @@ public class EventOrderedActionDAO implements IEventOrderedActionDAO {
 		}
 		catch (SQLException ex)
 		{
-			System.out.println(ex.getMessage());
+			System.err.println(this.getClass() + " " + ex.getMessage());
 		}
 		
 		finally
@@ -182,7 +182,7 @@ public class EventOrderedActionDAO implements IEventOrderedActionDAO {
 		}
 		catch (SQLException ex)
 		{
-			System.out.println(ex.getMessage());
+			System.err.println(this.getClass() + " " + ex.getMessage());
 		}
 		
 		finally

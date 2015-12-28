@@ -36,7 +36,7 @@ public class EventLotTicketDAO implements IEventLotTicketDAO {
 		}		
 		catch (SQLException ex)
 		{
-			System.out.println(ex.getMessage());
+			System.err.println(this.getClass() + " " + ex.getMessage());
 		}
 		
 		finally
@@ -52,7 +52,7 @@ public class EventLotTicketDAO implements IEventLotTicketDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT * FROM tb_event_lot_ticket"
+		String sql = "SELECT * FROM tb_event_lot_ticket "
 					+ "WHERE cd_event=?";
 		
 		List<EventLotTicket> lst = new ArrayList<EventLotTicket>();
@@ -64,23 +64,27 @@ public class EventLotTicketDAO implements IEventLotTicketDAO {
 
 			rs = stmt.executeQuery();
 			
-			EventDAO eventDAO = new EventDAO();
-			Event e = eventDAO.findByCode(rs.getInt("cd_event"));
+			while (rs.next())
+			{
 			
-			EventLotTicket elt = new EventLotTicket(
-										eventCode,
-										rs.getString("nm_event_lot_ticket"),
-										rs.getFloat("vl_event_lot_ticket"),
-										rs.getFloat("vl_event_lot_ticket_sympla_perc"),
-										rs.getInt("qt_event_lot_ticket"),
-										e
-										);
-			
-			lst.add(elt);
+				EventDAO eventDAO = new EventDAO();
+				Event e = eventDAO.findByCode(rs.getInt("cd_event"));
+				
+				EventLotTicket elt = new EventLotTicket(
+											eventCode,
+											rs.getString("nm_event_lot_ticket"),
+											rs.getFloat("vl_event_lot_ticket"),
+											rs.getFloat("vl_event_lot_ticket_sympla_perc"),
+											rs.getInt("qt_event_lot_ticket"),
+											e
+											);
+				
+				lst.add(elt);
+			}
 		}
 		catch (SQLException ex)
 		{
-			System.out.println(ex.getMessage());
+			System.err.println(this.getClass() + " " + ex.getMessage());
 		}
 
 		finally
@@ -129,7 +133,7 @@ public class EventLotTicketDAO implements IEventLotTicketDAO {
 		}
 		catch (SQLException ex)
 		{
-			System.out.println(ex.getMessage());
+			System.err.println(this.getClass() + " " + ex.getMessage());
 		}
 
 		finally
@@ -165,7 +169,7 @@ public class EventLotTicketDAO implements IEventLotTicketDAO {
 		}		
 		catch (SQLException ex)
 		{
-			System.out.println(ex.getMessage());
+			System.err.println(this.getClass() + " " + ex.getMessage());
 		}
 		
 		finally
@@ -189,7 +193,7 @@ public class EventLotTicketDAO implements IEventLotTicketDAO {
 		}
 		catch (SQLException ex)
 		{
-			System.out.println(ex.getMessage());
+			System.err.println(this.getClass() + " " + ex.getMessage());
 		}
 		
 		finally

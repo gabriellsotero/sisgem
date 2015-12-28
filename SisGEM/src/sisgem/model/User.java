@@ -9,7 +9,7 @@ public class User {
 	
 	private IntegerProperty code;
 	private StringProperty name;
-	private ObjectProperty<Image> photo;
+	private ObjectProperty<byte[]> photo;
 	private StringProperty login;
 	private StringProperty password;
 	private StringProperty salt;
@@ -17,13 +17,13 @@ public class User {
 	private ObjectProperty<UserProfiles> profile;
 	private StringProperty profileText;
 	
-	public User (int cCode, String cName, Image cPhoto, String cLogin,
+	public User (int cCode, String cName, byte[] bs, String cLogin,
 					String cPassword, String cSalt, String cEmail,
-					UserProfiles cProfile, String cProfileText)
+					UserProfiles cProfile , String cProfileText)
 	{		
 		code = new SimpleIntegerProperty(cCode);
 		name = new SimpleStringProperty(cName);
-		photo = new SimpleObjectProperty<Image>(cPhoto);
+		photo = new SimpleObjectProperty<byte[]>(bs);
 		login = new SimpleStringProperty(cLogin);
 		password = new SimpleStringProperty(cPassword);
 		salt = new SimpleStringProperty(cSalt);
@@ -62,17 +62,17 @@ public class User {
 	}
 	
 
-	public ObjectProperty<Image> photoProperty() {
+	public ObjectProperty<byte[]> photoProperty() {
 		return this.photo;
 	}
 	
 
-	public java.awt.Image getPhoto() {
+	public byte[] getPhoto() {
 		return this.photoProperty().get();
 	}
 	
 
-	public void setPhoto(final java.awt.Image photo) {
+	public void setPhoto(final byte[] photo) {
 		this.photoProperty().set(photo);
 	}
 	
