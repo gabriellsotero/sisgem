@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import java.net.*?>
+<?scenebuilder-stylesheet styles.css?>
+
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="oompa.sisgemplus.controllers.PendingApprovalTasksController">
+	<stylesheets>
+		<URL value="@styles.css" />
+	</stylesheets>
+   <center>
+      <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="Tarefas pendentes de aprovação">
+               <content>
+                  <VBox fx:id="vbox_backlog" alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <TableView fx:id="tableview_backlog" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" VBox.vgrow="ALWAYS">
+                          <columns>
+                              <TableColumn fx:id="tablecolumn_event" editable="false" maxWidth="125.0" minWidth="125.0" prefWidth="125.0" resizable="false" text="Evento" />
+                              <TableColumn fx:id="tablecolumn_description" editable="false" prefWidth="400.0" text="Descrição" />
+                              <TableColumn fx:id="tablecolumn_completeddate" editable="false" maxWidth="125.0" minWidth="125.0" prefWidth="125.0" resizable="false" text="Data completada" />
+                              <TableColumn fx:id="tablecolumn_accountable" maxWidth="125.0" minWidth="125.0" prefWidth="125.0" resizable="false" text="Responsável" />
+                              <TableColumn fx:id="tablecolumn_type" editable="false" maxWidth="125.0" minWidth="125.0" prefWidth="125.0" resizable="false" text="Tipo" />
+                          </columns>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                        <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" defaultButton="true" mnemonicParsing="false" onAction="#openTaskWindow" text="Ver tarefa">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
+                           </VBox.margin>
+			               <styleClass>
+			                  <String fx:value="elevenPx" />
+			                  <String fx:value="bold" />
+			               </styleClass>
+                        </Button>
+                     </children>
+                  </VBox>
+               </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </center>
+
+</BorderPane>

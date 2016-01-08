@@ -1,8 +1,8 @@
 .root{
-    -fx-font-size: 10pt;
-    -fx-font-family: "Segoe UI";
-    -fx-base: rgb(11,72,107);
-    -fx-background: rgb(225,240,203);
+    -fx-font-size: 8.0pt;
+    -fx-font-family: "Arial";
+    -fx-base: rgb(11.0,72.0,107.0);
+    -fx-background: rgb(225.0,240.0,203.0);
 }
 
 .menu .label{
@@ -11,11 +11,11 @@
 }
 
 .menu-item:focused{
-	-fx-background-color: rgb(11,72,107);
+	-fx-background-color: rgb(11.0,72.0,107.0);
 }
 
 .context-menu{
-	-fx-background-color: rgb(6,41,61);	
+	-fx-background-color: rgb(6.0,41.0,61.0);	
 }
 
 .tab{
@@ -23,38 +23,38 @@
 }
 
 .text-field{
-	-fx-background-color: rgb(225,240,203);
-	-fx-border-color: rgb(59,134,134);
-	-fx-border-radius: 3;
-	-fx-font-size: 10pt;
-	-fx-text-fill: rgb(11,72,107);
+	-fx-background-color: rgb(225.0,240.0,203.0);
+	-fx-border-color: rgb(59.0,134.0,134.0);
+	-fx-border-radius: 3.0;
+	-fx-font-size: 10.0pt;
+	-fx-text-fill: rgb(11.0,72.0,107.0);
 }
 
 #text_title{
-	-fx-font-size: 20pt;
-	-fx-font-family: "Segoe UI";
+	-fx-font-size: 20.0pt;
+	-fx-font-family: "Arial";
 	-fx-font-weight: bold;
-	-fx-fill: linear-gradient(to bottom, #0b486b 0%,#3b8686 100%);
+	-fx-fill: linear-gradient(to bottom, #0b486b 0.0%,#3b8686 100.0%);
 }
 
 #borderpane_title{
-	-fx-background-color: linear-gradient(to top, #E1EFCB 0%,#A8DBA8 100%);
+	-fx-background-color: linear-gradient(to top, #E1EFCB 0.0%,#A8DBA8 100.0%);
 }
 
 #borderpane_footer{
-	-fx-background-color: linear-gradient(to bottom, #E1EFCB 0%,#A8DBA8 100%);
+	-fx-background-color: linear-gradient(to bottom, #E1EFCB 0.0%,#A8DBA8 100.0%);
 }
 #borderpane_footer .label{
 	-fx-font-weight: bold;
 }
 
 #label_login{
-	-fx-font-size: 18;
+	-fx-font-size: 18.0;
 	-fx-font-weight: bold;
 }
 
 #label_password{
-	-fx-font-size: 18;
+	-fx-font-size: 18.0;
 	-fx-font-weight: bold;
 }
 
@@ -63,18 +63,18 @@
 }
 
 .label{
-	-fx-text-fill: rgb(11,72,107);
+	-fx-text-fill: rgb(11.0,72.0,107.0);
 }
 
 .tab-pane .tab-header-area .tab-header-background {
-    -fx-background-color: rgb(225,240,203);
+    -fx-background-color: rgb(225.0,240.0,203.0);
     -fx-text-fill: black;
 }
 
 .table-view {
-	-fx-background-color: rgb(225,240,203);
-	-fx-border-color: rgb(11,72,107);
-	-fx-border-width: 1px;
+	-fx-background-color: rgb(225.0,240.0,203.0);
+	-fx-border-color: rgb(11.0,72.0,107.0);
+	-fx-border-width: 1.0px;
 }
 
 .tab .tab-label { 
@@ -84,11 +84,85 @@
 
 .tab:selected .tab-label { 
     -fx-alignment: CENTER;
-    -fx-text-fill: rgb(11,72,107);
+    -fx-text-fill: rgb(11.0,72.0,107.0);
     -fx-font-weight: bold;
 }
-
 .table-view .column-header .label {
     -fx-text-fill: white;
     -fx-font-weight: bold;
+}
+
+.table-row-cell:selected {
+   -fx-background-color: #719171;
+
+ }
+ 
+ .table-row-cell:odd:selected {
+   -fx-background-color: #719171;
+ }
+ 
+.table-row-cell {
+    -fx-background-color: #CADEAD;
+}
+
+.table-row-cell:odd {
+   -fx-background-color: #D0E0B8;
+ }
+ 
+.lateTask 
+{ 
+ 	-fx-background-color: #FFDDDD;
+ 	-fx-text-fill: maroon;
+}
+ 
+ .todayTask 
+ { 
+ 	-fx-background-color: #F5F6CE;
+ 	-fx-text-fill: #B18904;
+ }
+
+ #label_title
+ {
+	-fx-font-size: 16.0pt;
+	-fx-font-family: "Arial";
+	-fx-font-weight: bold;
+}
+ 
+.elevenPx
+{
+	-fx-font-size: 10.5pt;
+}
+  
+.bold 
+{
+  	-fx-font-weight: bold;
+}
+
+.table-view *.scroll-bar:horizontal *.increment-button,
+.table-view *.scroll-bar:horizontal *.decrement-button {
+    -fx-background-color: null;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.table-view *.scroll-bar:horizontal *.increment-arrow, 
+.table-view *.scroll-bar:horizontal *.decrement-arrow {
+    -fx-background-color: null;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-shape: null;
+}
+
+.dialog-pane .header-panel {
+	-fx-background-color: rgb(225.0,240.0,203.0);
+}
+
+.dialog-pane .content {
+	-fx-background-color: rgb(225.0,240.0,203.0);
+}
+
+.dialog-pane .button-bar {
+	-fx-background-color: rgb(225.0,240.0,203.0);
 }

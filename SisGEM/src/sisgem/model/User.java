@@ -1,7 +1,5 @@
 package sisgem.model;
 
-import java.awt.Image;
-
 import javafx.beans.property.*;
 import sisgem.model.enums.UserProfiles;
 

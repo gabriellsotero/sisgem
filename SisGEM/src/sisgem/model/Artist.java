@@ -9,19 +9,19 @@ public class Artist {
 	private StringProperty stageName;
 	private ObjectProperty<byte[]> photo;
 	private StringProperty artistEventRole;
-	private ObjectProperty<Contact> contact;
+	private IntegerProperty contactCode;
 	private FloatProperty avgValue;
 	private StringProperty comment;
 	
 	public Artist (int cCode, String cRealName, String cStageName, byte[] cPhoto,
-					String cArtistEventRole, Contact cContact, float cAvgValue, String cComment)
+					String cArtistEventRole, int cContact, float cAvgValue, String cComment)
 	{
 		code = new SimpleIntegerProperty(cCode);
 		realName = new SimpleStringProperty(cRealName);
 		stageName = new SimpleStringProperty(cStageName);
 		photo = new SimpleObjectProperty<byte[]>(cPhoto);
 		artistEventRole = new SimpleStringProperty(cArtistEventRole);
-		contact = new SimpleObjectProperty<Contact>(cContact);
+		contactCode = new SimpleIntegerProperty(cContact);
 		avgValue = new SimpleFloatProperty(cAvgValue);
 		comment = new SimpleStringProperty(cComment);
 	}
@@ -87,18 +87,6 @@ public class Artist {
 		this.artistEventRoleProperty().set(artistEventRole);
 	}
 	
-	public ObjectProperty<Contact> contactProperty() {
-		return this.contact;
-	}
-	
-	public sisgem.model.Contact getContact() {
-		return this.contactProperty().get();
-	}
-	
-	public void setContact(final sisgem.model.Contact contact) {
-		this.contactProperty().set(contact);
-	}
-	
 	public FloatProperty avgValueProperty() {
 		return this.avgValue;
 	}
@@ -121,5 +109,23 @@ public class Artist {
 	
 	public void setComment(final java.lang.String comment) {
 		this.commentProperty().set(comment);
-	}	
+	}
+
+
+	public IntegerProperty contactCodeProperty() {
+		return this.contactCode;
+	}
+	
+
+
+	public int getContactCode() {
+		return this.contactCodeProperty().get();
+	}
+	
+
+
+	public void setContactCode(final int contactCode) {
+		this.contactCodeProperty().set(contactCode);
+	}
+		
 }

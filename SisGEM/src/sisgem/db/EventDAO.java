@@ -3,7 +3,7 @@ package sisgem.db;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.lang.Exception;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -14,16 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 import sisgem.db.i.IEventDAO;
-import sisgem.model.ArtistEvent;
-import sisgem.model.Concept;
 import sisgem.model.Event;
-import sisgem.model.EventEntry;
-import sisgem.model.EventLotTicket;
-import sisgem.model.EventOrderedAction;
-import sisgem.model.MaterialEvent;
-import sisgem.model.ProviderEvent;
-import sisgem.model.User;
-import sisgem.model.Venue;
 import sisgem.model.enums.EventStatus;
 
 public class EventDAO implements IEventDAO {
@@ -46,7 +37,7 @@ public class EventDAO implements IEventDAO {
 			stmt = conn.prepareStatement(sql);
 			
 			stmt.setString(1, e.getName());
-			stmt.setInt(2, e.getVenue().getCode());
+			stmt.setInt(2, e.getVenueCode());
 			Instant instant = e.getDateTime().toInstant(ZoneOffset.UTC);
 		    Date date = Date.from(instant);
 			stmt.setDate(3, new java.sql.Date(date.getTime()));
@@ -61,14 +52,16 @@ public class EventDAO implements IEventDAO {
 			stmt.setInt(11, e.getBirthdayLists());
 			stmt.setString(12, e.getCompetitors());
 			stmt.setString(13, e.getEvaluation());
-			stmt.setInt(14, e.getCreator().getCode());
-			stmt.setInt(15,  e.getOriginator().getCode());
+			stmt.setInt(14, e.getCreatorCode());
+			stmt.setInt(15, e.getEvaluatorCode());
+			stmt.setInt(16,  e.getOriginatorCode());
 			
 			stmt.executeUpdate();			
 		}		
-		catch (SQLException ex)
+		catch (Exception ex)
 		{
-			System.err.println(this.getClass() + " " + ex.getMessage());
+			System.out.println(this.getClass() + " Create");
+			System.err.println(ex.getMessage());
 		}
 		
 		finally
@@ -99,27 +92,6 @@ public class EventDAO implements IEventDAO {
 			
 			if (rs.next())
 			{
-				VenueDAO venueDAO = new VenueDAO();
-				UserDAO userDAO = new UserDAO();
-				ConceptDAO conceptDAO = new ConceptDAO();
-				ArtistDAO artistDAO = new ArtistDAO();
-				MaterialDAO materialDAO = new MaterialDAO();
-				ProviderDAO providerDAO = new ProviderDAO();
-				EventEntryDAO eventEntryDAO = new EventEntryDAO();
-				EventLotTicketDAO eventLotTicketDAO = new EventLotTicketDAO();
-				EventOrderedActionDAO eventOrderedActionDAO = new EventOrderedActionDAO();
-				
-				Venue v = venueDAO.findByCode(rs.getInt("cd_venue"));
-				User uc = userDAO.findByCode(rs.getInt("cd_creator"));
-				User ue = userDAO.findByCode(rs.getInt("cd_evaluator"));
-				Concept c = conceptDAO.findByCode(rs.getInt("cd_concept"));
-				List<ArtistEvent> lstArtist = artistDAO.listAllByEvent(code);
-				List<MaterialEvent> lstMaterial = materialDAO.listAllByEvent(code);
-				List<ProviderEvent> lstProvider = providerDAO.listAllByEvent(code);
-				List<EventEntry> lstEntry = eventEntryDAO.listAllByEvent(code);
-				List<EventLotTicket> lstTicket = eventLotTicketDAO.listAllByEvent(code);
-				List<EventOrderedAction> lstAction = eventOrderedActionDAO.listAllByEvent(code);
-				
 				Instant instant = Instant.ofEpochMilli(rs.getDate("dt_event").getTime());
 			    LocalDateTime ldt = LocalDateTime.ofInstant(instant, ZoneOffset.UTC);	
 			    
@@ -131,7 +103,7 @@ public class EventDAO implements IEventDAO {
 				e = new Event(
 						rs.getInt("cd_event"),
 						rs.getString("nm_event"),
-						v,
+						rs.getInt("cd_venue"),
 						ldt,
 						rs.getString("ds_event"),
 						status,
@@ -144,22 +116,17 @@ public class EventDAO implements IEventDAO {
 						rs.getInt("nm_event_birthday_lists"),
 						rs.getString("ds_event_competitors"),
 						rs.getString("ds_event_evaluation"),
-						uc,
-						ue,
-						c,
-						lstArtist,
-						lstMaterial,
-						lstProvider,
-						lstEntry,
-						lstTicket,
-						lstAction
+						rs.getInt("cd_creator"),
+						rs.getInt("cd_evaluator"),
+						rs.getInt("cd_concept")
 					);
 			}
 		}
 
-		catch (SQLException ex)
+		catch (Exception ex)
 		{
-			System.err.println(this.getClass() + " " + ex.getMessage());
+			System.out.println(this.getClass() + " Find By Code");
+			ex.printStackTrace();
 		}
 
 		finally
@@ -189,27 +156,6 @@ public class EventDAO implements IEventDAO {
 			while (rs.next())
 			{
 			
-				VenueDAO venueDAO = new VenueDAO();
-				UserDAO userDAO = new UserDAO();
-				ConceptDAO conceptDAO = new ConceptDAO();
-				ArtistDAO artistDAO = new ArtistDAO();
-				MaterialDAO materialDAO = new MaterialDAO();
-				ProviderDAO providerDAO = new ProviderDAO();
-				EventEntryDAO eventEntryDAO = new EventEntryDAO();
-				EventLotTicketDAO eventLotTicketDAO = new EventLotTicketDAO();
-				EventOrderedActionDAO eventOrderedActionDAO = new EventOrderedActionDAO();
-				
-				Venue v = venueDAO.findByCode(rs.getInt("cd_venue"));
-				User uc = userDAO.findByCode(rs.getInt("cd_creator"));
-				User ue = userDAO.findByCode(rs.getInt("cd_evaluator"));
-				Concept c = conceptDAO.findByCode(rs.getInt("cd_concept"));
-				List<ArtistEvent> lstArtist = artistDAO.listAllByEvent(rs.getInt("cd_event"));
-				List<MaterialEvent> lstMaterial = materialDAO.listAllByEvent(rs.getInt("cd_event"));
-				List<ProviderEvent> lstProvider = providerDAO.listAllByEvent(rs.getInt("cd_event"));
-				List<EventEntry> lstEntry = eventEntryDAO.listAllByEvent(rs.getInt("cd_event"));
-				List<EventLotTicket> lstTicket = eventLotTicketDAO.listAllByEvent(rs.getInt("cd_event"));
-				List<EventOrderedAction> lstAction = eventOrderedActionDAO.listAllByEvent(rs.getInt("cd_event"));
-				
 				Instant instant = Instant.ofEpochMilli(rs.getDate("dt_event").getTime());
 			    LocalDateTime ldt = LocalDateTime.ofInstant(instant, ZoneOffset.UTC);	
 			    
@@ -221,7 +167,7 @@ public class EventDAO implements IEventDAO {
 				Event e = new Event(
 						rs.getInt("cd_event"),
 						rs.getString("nm_event"),
-						v,
+						rs.getInt("cd_venue"),
 						ldt,
 						rs.getString("ds_event"),
 						status,
@@ -234,24 +180,19 @@ public class EventDAO implements IEventDAO {
 						rs.getInt("nm_event_birthday_lists"),
 						rs.getString("ds_event_competitors"),
 						rs.getString("ds_event_evaluation"),
-						uc,
-						ue,
-						c,
-						lstArtist,
-						lstMaterial,
-						lstProvider,
-						lstEntry,
-						lstTicket,
-						lstAction
+						rs.getInt("cd_creator"),
+						rs.getInt("cd_evaluator"),
+						rs.getInt("cd_concept")
 					);
 				
 				lst.add(e);
 			}
 		}
 
-		catch (SQLException ex)
+		catch (Exception ex)
 		{
-			System.err.println(this.getClass() + " " + ex.getMessage());
+			System.out.println(this.getClass() + " List All");
+			System.err.println(ex.getMessage());
 		}
 
 		finally
@@ -278,7 +219,7 @@ public class EventDAO implements IEventDAO {
 			stmt = conn.prepareStatement(sql);
 			
 			stmt.setString(1, e.getName());
-			stmt.setInt(2, e.getVenue().getCode());
+			stmt.setInt(2, e.getVenueCode());
 			Instant instant = e.getDateTime().toInstant(ZoneOffset.UTC);
 		    Date date = Date.from(instant);
 			stmt.setDate(3, new java.sql.Date(date.getTime()));
@@ -293,24 +234,23 @@ public class EventDAO implements IEventDAO {
 			stmt.setInt(11, e.getBirthdayLists());
 			stmt.setString(12, e.getCompetitors());
 			stmt.setString(13, e.getEvaluation());
-			stmt.setInt(14, e.getCreator().getCode());
-			stmt.setInt(15,  e.getOriginator().getCode());
+			stmt.setInt(14, e.getCreatorCode());
+			stmt.setInt(15,  e.getOriginatorCode());
 			
 			stmt.setInt(16, e.getCode());
 			
 			stmt.executeUpdate();			
 		}		
-		catch (SQLException ex)
+		catch (Exception ex)
 		{
-			System.err.println(this.getClass() + " " + ex.getMessage());
+			System.out.println(this.getClass() + " Update");
+			System.err.println(ex.getMessage());
 		}
 		
 		finally
 		{
 			Connect.close(conn, stmt, null);
-		}
-		
-		
+		}		
 	}
 
 	@Override
@@ -326,7 +266,7 @@ public class EventDAO implements IEventDAO {
 			stmt.setInt(1, e.getCode());
 			stmt.executeUpdate();		
 		}
-		catch (SQLException ex)
+		catch (Exception ex)
 		{
 			System.err.println(this.getClass() + " " + ex.getMessage());
 		}
@@ -337,5 +277,44 @@ public class EventDAO implements IEventDAO {
 		}
 		
 		return;				
+	}
+
+	public String findNameByCode(int code) 
+	{
+		Connection conn = Connect.connect();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT * FROM tb_event "
+					+ "NATURAL JOIN tb_event_status "
+					+ "WHERE cd_event = ?";
+		
+		String name = null;
+		
+		try 
+		{
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, code);
+
+			rs = stmt.executeQuery();
+			
+			if (rs.next())
+			{
+				name = rs.getString("nm_event");
+			}
+		}
+
+		catch (Exception ex)
+		{
+			System.out.println(this.getClass() + " Find By Code");
+			ex.printStackTrace();
+		}
+
+		finally
+		{
+			Connect.close(conn, stmt, rs);
+		}
+
+		return name;		
 	}
 }

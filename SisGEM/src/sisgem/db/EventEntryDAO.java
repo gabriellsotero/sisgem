@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sisgem.db.i.IEventEntryDAO;
-import sisgem.model.Event;
 import sisgem.model.EventEntry;
 import sisgem.model.enums.EventEntryTypes;
 
@@ -30,7 +29,7 @@ public class EventEntryDAO implements IEventEntryDAO {
 			stmt.setString(2, e.getDescription());
 			stmt.setFloat(3,e.getValue());
 			stmt.setInt(4, e.getQty());
-			stmt.setInt(5, e.getEvent().getCode());
+			stmt.setInt(5, e.getEventCode());
 			
 			stmt.executeUpdate();			
 		}		
@@ -70,8 +69,6 @@ public class EventEntryDAO implements IEventEntryDAO {
 			{
 				
 				EventEntryTypes type = EventEntryTypes.values()[rs.getInt("cd_event_entry_type")];			
-				EventDAO eventDAO = new EventDAO();
-				Event e = eventDAO.findByCode(rs.getInt("cd_event"));
 				
 				EventEntry ee = new EventEntry
 								(rs.getInt("cd_event_entry_code"), 
@@ -79,7 +76,7 @@ public class EventEntryDAO implements IEventEntryDAO {
 								rs.getString("nm_event_entry_type"),
 								rs.getFloat("vl_event_entry"),
 								rs.getInt("qt_event_entry"),
-								e					
+								rs.getInt("cd_event")					
 								);		
 				
 				lst.add(ee);
@@ -121,8 +118,6 @@ public class EventEntryDAO implements IEventEntryDAO {
 			if (rs.next())
 			{				
 				EventEntryTypes type = EventEntryTypes.values()[rs.getInt("cd_event_entry_type")];			
-				EventDAO eventDAO = new EventDAO();
-				Event e = eventDAO.findByCode(rs.getInt("cd_event"));
 				
 				ee = new EventEntry
 						(code, 
@@ -130,7 +125,7 @@ public class EventEntryDAO implements IEventEntryDAO {
 						rs.getString("nm_event_entry_type"),
 						rs.getFloat("vl_event_entry"),
 						rs.getInt("qt_event_entry"),
-						e					
+						rs.getInt("cd_event")				
 						);				
 			}
 			
@@ -164,7 +159,7 @@ public class EventEntryDAO implements IEventEntryDAO {
 			stmt.setString(2, e.getDescription());
 			stmt.setFloat(3,e.getValue());
 			stmt.setInt(4, e.getQty());
-			stmt.setInt(5, e.getEvent().getCode());
+			stmt.setInt(5, e.getEventCode());
 			
 			stmt.setInt(6, e.getCode());
 			

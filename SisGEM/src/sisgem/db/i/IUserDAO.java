@@ -12,6 +12,7 @@ public interface IUserDAO {
 	/* RETRIEVE */
 	public List <User> listAll();
 	public User findByCode(int code);
+	public String findLoginByCode(int userCode);
 	public User findByLogin(String login);
 	
 	/* UPDATE */
@@ -19,4 +20,6 @@ public interface IUserDAO {
 	
 	/* DELETE */
 	public void delete(User u);
+
+
 }

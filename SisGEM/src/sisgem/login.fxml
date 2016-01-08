@@ -13,7 +13,7 @@
 <BorderPane maxHeight="+Infinity" maxWidth="+Infinity"
 	minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
 	prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="sisgem.controllers.LoginController">
+	fx:controller="oompa.sisgemplus.controllers.LoginController">
 	<center>
 		<GridPane BorderPane.alignment="CENTER">
 			<columnConstraints>
@@ -67,6 +67,10 @@
 					<GridPane.margin>
 						<Insets left="15.0" right="15.0" top="20.0" />
 					</GridPane.margin>
+			        <styleClass>
+			        	<String fx:value="elevenPx" />
+			        	<String fx:value="bold" />
+			        </styleClass>
 				</Button>
 			</children>
 		</GridPane>

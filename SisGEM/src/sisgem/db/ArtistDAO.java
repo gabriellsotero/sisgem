@@ -10,7 +10,6 @@ import java.util.List;
 import sisgem.db.i.IArtistDAO;
 import sisgem.model.Artist;
 import sisgem.model.ArtistEvent;
-import sisgem.model.Contact;
 
 public class ArtistDAO implements IArtistDAO {
 
@@ -32,7 +31,7 @@ public class ArtistDAO implements IArtistDAO {
 			stmt.setString(3,  a.getStageName());
 			stmt.setBytes(4, a.getPhoto());
 			stmt.setString(5, a.getArtistEventRole());
-			stmt.setInt(6, a.getContact().getCode());
+			stmt.setInt(6, a.getContactCode());
 			stmt.setFloat(7, a.getAvgValue());
 			stmt.setString(8, a.getComment());
 			
@@ -40,7 +39,8 @@ public class ArtistDAO implements IArtistDAO {
 		}
 		catch (SQLException e)
 		{
-			System.err.println(this.getClass() + " " + e.getMessage());
+			System.out.println(this.getClass() + " Create");
+			System.err.println(e.getMessage());
 		}
 		
 		finally
@@ -71,8 +71,6 @@ public class ArtistDAO implements IArtistDAO {
 			
 			if (rs.next())
 			{
-				ContactDAO contactDAO = new ContactDAO();
-				Contact c = contactDAO.findByCode(rs.getInt("cd_contact"));
 
 				a = new Artist
 						(rs.getInt("cd_artist"), 
@@ -80,7 +78,7 @@ public class ArtistDAO implements IArtistDAO {
 						rs.getString("nm_artist_nick"), 
 						rs.getBytes("ph_artist"),
 						rs.getString("ds_artist_eventrole"),
-						c,
+						rs.getInt("cd_contact"),
 						rs.getFloat("vl_artist_avg"),
 						rs.getString("ds_artist_comment")
 						);
@@ -90,7 +88,8 @@ public class ArtistDAO implements IArtistDAO {
 		
 		catch (SQLException e)
 		{
-			System.err.println(this.getClass() + " " + e.getMessage());
+			System.out.println(this.getClass() + " Find By Code");
+			System.err.println(e.getMessage());
 		}
 		
 		finally
@@ -120,16 +119,13 @@ public class ArtistDAO implements IArtistDAO {
 			
 			while (rs.next())
 			{
-				ContactDAO contactDAO = new ContactDAO();
-				Contact c = contactDAO.findByCode(rs.getInt("cd_contact"));
-
 				Artist a = new Artist
 						(rs.getInt("cd_artist"), 
 						rs.getString("nm_artist_real"),
 						rs.getString("nm_artist_nick"), 
 						rs.getBytes("ph_artist"),
 						rs.getString("ds_artist_eventrole"),
-						c,
+						rs.getInt("cd_contact"),
 						rs.getFloat("vl_artist_avg"),
 						rs.getString("ds_artist_comment")
 				);
@@ -141,7 +137,8 @@ public class ArtistDAO implements IArtistDAO {
 		
 		catch (SQLException e)
 		{
-			System.err.println(this.getClass() + " " + e.getMessage());
+			System.out.println(this.getClass() + " List All");
+			System.err.println(e.getMessage());
 		}
 		
 		finally
@@ -174,16 +171,14 @@ public class ArtistDAO implements IArtistDAO {
 			
 			while (rs.next())
 			{
-				ContactDAO contactDAO = new ContactDAO();
-				Contact c = contactDAO.findByCode(rs.getInt("cd_contact"));
-
+		
 				Artist a = new Artist
 						(rs.getInt("cd_artist"), 
 						rs.getString("nm_artist_real"),
 						rs.getString("nm_artist_nick"), 
 						rs.getBytes("ph_artist"),
 						rs.getString("ds_artist_eventrole"),
-						c,
+						rs.getInt("cd_contact"),
 						rs.getFloat("vl_artist_avg"),
 						rs.getString("ds_artist_comment")
 				);
@@ -195,7 +190,8 @@ public class ArtistDAO implements IArtistDAO {
 		
 		catch (SQLException e)
 		{
-			System.err.println(this.getClass() + " " + e.getMessage());
+			System.out.println(this.getClass() + " List All By Concept");
+			System.err.println(e.getMessage());
 		}
 		
 		finally
@@ -228,20 +224,17 @@ public class ArtistDAO implements IArtistDAO {
 			
 			while (rs.next())
 			{
-				ContactDAO contactDAO = new ContactDAO();
-				Contact c = contactDAO.findByCode(rs.getInt("cd_contact"));
-
 				Artist a = new Artist
 						(rs.getInt("cd_artist"), 
 						rs.getString("nm_artist_real"),
 						rs.getString("nm_artist_nick"), 
 						rs.getBytes("ph_artist"),
 						rs.getString("ds_artist_eventrole"),
-						c,
+						rs.getInt("cd_contact"),
 						rs.getFloat("vl_artist_avg"),
 						rs.getString("ds_artist_comment")
 				);
-						
+										
 				ArtistEvent ae = new ArtistEvent(a, rs.getFloat("vl_artist_event"));
 				
 				lst.add(ae);
@@ -251,7 +244,8 @@ public class ArtistDAO implements IArtistDAO {
 		
 		catch (SQLException e)
 		{
-			System.err.println(this.getClass() + " " + e.getMessage());
+			System.out.println(this.getClass() + " List All By Event");
+			System.err.println(e.getMessage());
 		}
 		
 		finally
@@ -277,7 +271,7 @@ public class ArtistDAO implements IArtistDAO {
 			stmt.setString(2,  a.getStageName());
 			stmt.setBytes(3, a.getPhoto());
 			stmt.setString(4, a.getArtistEventRole());
-			stmt.setInt(5, a.getContact().getCode());
+			stmt.setInt(5, a.getContactCode());
 			stmt.setFloat(6, a.getAvgValue());
 			stmt.setString(7, a.getComment());
 			
@@ -287,7 +281,8 @@ public class ArtistDAO implements IArtistDAO {
 		}
 		catch (SQLException e)
 		{
-			System.err.println(this.getClass() + " " + e.getMessage());
+			System.out.println(this.getClass() + " Update");
+			System.err.println(e.getMessage());
 		}
 		
 		finally
@@ -313,7 +308,8 @@ public class ArtistDAO implements IArtistDAO {
 		}
 		catch (SQLException e)
 		{
-			System.err.println(this.getClass() + " " + e.getMessage());
+			System.out.println(this.getClass() + " Delete");
+			System.err.println(e.getMessage());
 		}
 		
 		finally

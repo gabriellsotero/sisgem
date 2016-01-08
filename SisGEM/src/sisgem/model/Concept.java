@@ -1,8 +1,6 @@
 package sisgem.model;
 
 import java.time.LocalDate;
-import java.util.List;
-
 import javafx.beans.property.*;
 import sisgem.model.enums.ConceptStatus;
 
@@ -15,18 +13,12 @@ public class Concept {
 	private ObjectProperty<LocalDate> createdDate;
 	private ObjectProperty<ConceptStatus> status;
 	private StringProperty statusText; //not DB
-	private ObjectProperty<User> creator;
-	private ObjectProperty<User> evaluator;
-	private ObjectProperty<List<Artist>> artistsList;
-	private ObjectProperty<List<MaterialConcept>> materialsList;
-	private ObjectProperty<List<ProviderEventRoleConcept>> eventRolesList;
-	private ObjectProperty<List<Venue>> venuesList;
+	private IntegerProperty creatorCode;
+	private IntegerProperty evaluatorCode;
 	
 	public Concept (int cCode, String cName, String cDescription,
 						String cComment, LocalDate cCreatedDate, ConceptStatus cStatus,
-						String cStatusText, User cCreator, User cEvaluator, 
-						List<Artist> cArtistsList, List<MaterialConcept> cMaterialsList, 
-						List<ProviderEventRoleConcept> cEventRolesList,	List<Venue> cVenuesList)
+						String cStatusText, int cCreatorCode, int cEvaluatorCode)
 	{
 		code = new SimpleIntegerProperty(cCode);
 		name = new SimpleStringProperty(cName);
@@ -35,14 +27,15 @@ public class Concept {
 		createdDate = new SimpleObjectProperty<LocalDate>(cCreatedDate);
 		status = new SimpleObjectProperty<ConceptStatus>(cStatus);
 		statusText = new SimpleStringProperty(cStatusText);
-		creator = new SimpleObjectProperty<User>(cCreator);
-		evaluator = new SimpleObjectProperty<User>(cEvaluator);
-		artistsList = new SimpleObjectProperty<List<Artist>>(cArtistsList);
-		materialsList = new SimpleObjectProperty<List<MaterialConcept>>(cMaterialsList);
-		eventRolesList = new SimpleObjectProperty<List<ProviderEventRoleConcept>>(cEventRolesList);
-		venuesList = new SimpleObjectProperty<List<Venue>>(cVenuesList);
+		creatorCode = new SimpleIntegerProperty(cCreatorCode);
+		evaluatorCode = new SimpleIntegerProperty(cEvaluatorCode);
 	}
-		
+
+	public IntegerProperty codeProperty() {
+		return this.code;
+	}
+	
+
 	public int getCode() {
 		return this.codeProperty().get();
 	}
@@ -143,87 +136,33 @@ public class Concept {
 	}
 	
 
-	public ObjectProperty<User> creatorProperty() {
-		return this.creator;
+	public IntegerProperty creatorCodeProperty() {
+		return this.creatorCode;
 	}
 	
 
-	public sisgem.model.User getCreator() {
-		return this.creatorProperty().get();
+	public int getCreatorCode() {
+		return this.creatorCodeProperty().get();
 	}
 	
 
-	public void setCreator(final sisgem.model.User creator) {
-		this.creatorProperty().set(creator);
+	public void setCreatorCode(final int creatorCode) {
+		this.creatorCodeProperty().set(creatorCode);
 	}
 	
 
-	public ObjectProperty<User> evaluatorProperty() {
-		return this.evaluator;
+	public IntegerProperty evaluatorCodeProperty() {
+		return this.evaluatorCode;
 	}
 	
 
-	public sisgem.model.User getEvaluator() {
-		return this.evaluatorProperty().get();
+	public int getEvaluatorCode() {
+		return this.evaluatorCodeProperty().get();
 	}
 	
 
-	public void setEvaluator(final sisgem.model.User evaluator) {
-		this.evaluatorProperty().set(evaluator);
-	}
-	
-	public ObjectProperty<List<Artist>> artistsListProperty() {
-		return this.artistsList;
-	}
-	
-	public java.util.List<sisgem.model.Artist> getArtistsList() {
-		return this.artistsListProperty().get();
-	}
-	
-	public void setArtistsList(final java.util.List<sisgem.model.Artist> artistsList) {
-		this.artistsListProperty().set(artistsList);
-	}
-	
-	public ObjectProperty<List<MaterialConcept>> materialsListProperty() {
-		return this.materialsList;
-	}
-	
-	public java.util.List<sisgem.model.MaterialConcept> getMaterialsList() {
-		return this.materialsListProperty().get();
-	}
-	
-	public void setMaterialsList(final java.util.List<sisgem.model.MaterialConcept> materialsList) {
-		this.materialsListProperty().set(materialsList);
-	}
-	
-	public ObjectProperty<List<ProviderEventRoleConcept>> eventRolesListProperty() {
-		return this.eventRolesList;
-	}
-	
-	public java.util.List<sisgem.model.ProviderEventRoleConcept> getEventRolesList() {
-		return this.eventRolesListProperty().get();
-	}
-	
-	public void setEventRolesList(final java.util.List<sisgem.model.ProviderEventRoleConcept> eventRolesList) {
-		this.eventRolesListProperty().set(eventRolesList);
-	}
-
-	public ObjectProperty<List<Venue>> venuesListProperty() {
-		return this.venuesList;
-	}
-	
-
-	public java.util.List<sisgem.model.Venue> getVenuesList() {
-		return this.venuesListProperty().get();
-	}
-	
-
-	public void setVenuesList(final java.util.List<sisgem.model.Venue> venuesList) {
-		this.venuesListProperty().set(venuesList);
-	}
-
-	public IntegerProperty codeProperty() {
-		return this.code;
+	public void setEvaluatorCode(final int evaluatorCode) {
+		this.evaluatorCodeProperty().set(evaluatorCode);
 	}
 	
 }

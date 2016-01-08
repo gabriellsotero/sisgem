@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?scenebuilder-stylesheet styles.css?>
 
-<BorderPane fx:id="borderpane_root" maxHeight="Infinity" maxWidth="Infinity" minHeight="0.0" minWidth="0.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sisgem.controllers.MainController">
+<BorderPane fx:id="borderpane_root" maxHeight="Infinity" maxWidth="Infinity" minHeight="0.0" minWidth="0.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="oompa.sisgemplus.controllers.MainController">
    <bottom>
       <BorderPane fx:id="borderpane_footer" prefHeight="30.0" prefWidth="640.0" BorderPane.alignment="CENTER">
          <right>

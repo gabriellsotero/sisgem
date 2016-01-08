@@ -7,15 +7,15 @@ public class EventOrderedAction {
 	private IntegerProperty code;
 	private IntegerProperty order;
 	private StringProperty description;
-	private ObjectProperty<Event> event;
+	private IntegerProperty eventCode;
 	
 	public EventOrderedAction (int cCode, int cOrder,
-								String cDescription, Event cEvent)
+								String cDescription, int cEventCode)
 	{
 		code = new SimpleIntegerProperty(cCode);
 		order = new SimpleIntegerProperty(cOrder);
 		description = new SimpleStringProperty(cDescription);
-		event = new SimpleObjectProperty<Event>(cEvent);
+		eventCode = new SimpleIntegerProperty(cEventCode);
 	}
 	
 	public IntegerProperty codeProperty() {
@@ -53,17 +53,19 @@ public class EventOrderedAction {
 	public void setDescription(final java.lang.String description) {
 		this.descriptionProperty().set(description);
 	}
-	
-	public ObjectProperty<Event> eventProperty() {
-		return this.event;
+
+	public IntegerProperty eventCodeProperty() {
+		return this.eventCode;
 	}
 	
-	public sisgem.model.Event getEvent() {
-		return this.eventProperty().get();
+
+	public int getEventCode() {
+		return this.eventCodeProperty().get();
 	}
 	
-	public void setEvent(final sisgem.model.Event event) {
-		this.eventProperty().set(event);
+
+	public void setEventCode(final int eventCode) {
+		this.eventCodeProperty().set(eventCode);
 	}
-		
+	
 }

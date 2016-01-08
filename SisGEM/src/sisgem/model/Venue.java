@@ -6,19 +6,19 @@ public class Venue {
 	
 	private IntegerProperty code;
 	private StringProperty name;
-	private StringProperty description;
+	private StringProperty address;
 	private IntegerProperty maxCapacity;
-	private ObjectProperty<Contact> contact;
+	private IntegerProperty contactCode;
 	private StringProperty comment;
 	
-	public Venue (int cCode, String cName, String cDescription,
-				int cMaxCapacity, Contact cContact, String cComment)
+	public Venue (int cCode, String cName, String cAddress,
+				int cMaxCapacity, int cContactCode, String cComment)
 	{
 		code = new SimpleIntegerProperty(cCode);
 		name = new SimpleStringProperty(cName);
-		description = new SimpleStringProperty(cDescription);
+		address = new SimpleStringProperty(cAddress);
 		maxCapacity = new SimpleIntegerProperty(cMaxCapacity);
-		contact = new SimpleObjectProperty<Contact>(cContact);
+		contactCode = new SimpleIntegerProperty(cContactCode);
 		comment = new SimpleStringProperty(cComment);
 	}
 	
@@ -46,16 +46,16 @@ public class Venue {
 		this.nameProperty().set(name);
 	}
 	
-	public StringProperty descriptionProperty() {
-		return this.description;
+	public StringProperty addressProperty() {
+		return this.address;
 	}
 	
-	public java.lang.String getDescription() {
-		return this.descriptionProperty().get();
+	public java.lang.String getAddress() {
+		return this.addressProperty().get();
 	}
 	
-	public void setDescription(final java.lang.String description) {
-		this.descriptionProperty().set(description);
+	public void setAddress(final java.lang.String address) {
+		this.addressProperty().set(address);
 	}
 	
 	public IntegerProperty maxCapacityProperty() {
@@ -70,16 +70,18 @@ public class Venue {
 		this.maxCapacityProperty().set(maxCapacity);
 	}
 	
-	public ObjectProperty<Contact> contactProperty() {
-		return this.contact;
+	public IntegerProperty contactCodeProperty() {
+		return this.contactCode;
 	}
 	
-	public sisgem.model.Contact getContact() {
-		return this.contactProperty().get();
+
+	public int getContactCode() {
+		return this.contactCodeProperty().get();
 	}
 	
-	public void setContact(final sisgem.model.Contact contact) {
-		this.contactProperty().set(contact);
+
+	public void setContactCode(final int contactCode) {
+		this.contactCodeProperty().set(contactCode);
 	}
 	
 	public StringProperty commentProperty() {
@@ -93,5 +95,5 @@ public class Venue {
 	public void setComment(final java.lang.String comment) {
 		this.commentProperty().set(comment);
 	}
-		
+
 }

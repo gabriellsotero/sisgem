@@ -37,14 +37,15 @@ public class ConceptDAO implements IConceptDAO{
 			Date date = Date.from(c.getCreatedDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
 			stmt.setDate(4, new java.sql.Date(date.getTime()));
 			stmt.setInt(5, c.getStatus().ordinal());
-			stmt.setInt(6, c.getCreator().getCode());
-			stmt.setInt(7, c.getEvaluator().getCode());
+			stmt.setInt(6, c.getCreatorCode());
+			stmt.setInt(7, c.getEvaluatorCode());
 			
 			stmt.executeUpdate();	
 		}		
 		catch (SQLException e)
 		{
-			System.err.println(this.getClass() + " " + e.getMessage());
+			System.out.println(this.getClass() + " Create");
+			System.err.println(e.getMessage());
 		}
 		
 		finally
@@ -80,22 +81,6 @@ public class ConceptDAO implements IConceptDAO{
 				
 				ConceptStatus status = ConceptStatus.values()[rs.getInt("cd_concept_status")];
 				
-				UserDAO userDAO = new UserDAO();
-				User uc = userDAO.findByCode(rs.getInt("cd_creator"));
-				User ue = userDAO.findByCode(rs.getInt("cd_evaluator"));
-				
-				ArtistDAO artistDAO = new ArtistDAO();
-				List<Artist> lstArtist = artistDAO.listAllByConcept(code);
-				
-				MaterialDAO materialDAO = new MaterialDAO();
-				List<MaterialConcept> lstMaterial = materialDAO.listAllByConcept(code);
-
-				ProviderEventRoleDAO providerEventRoleDAO = new ProviderEventRoleDAO();
-				List<ProviderEventRoleConcept> lstEventRole = providerEventRoleDAO.listAllByConcept(code);
-				
-				VenueDAO venueDAO = new VenueDAO();
-				List<Venue> lstVenue = venueDAO.listAllByConcept(code);
-				
 				c = new Concept(
 						rs.getInt("cd_concept"),
 						rs.getString("nm_concept"),
@@ -104,20 +89,17 @@ public class ConceptDAO implements IConceptDAO{
 						ld,
 						status,
 						rs.getString("nm_concept_status"), 
-						uc,
-						ue,
-						lstArtist,
-						lstMaterial,
-						lstEventRole,
-						lstVenue
-					);
+						rs.getInt("cd_creator"),
+						rs.getInt("cd_evaluator")
+				);
 				
 			}
 		}
 		
 		catch (SQLException e)
 		{
-			System.err.println(this.getClass() + " " + e.getMessage());
+			System.out.println(this.getClass() + " Find By Code");
+			System.err.println(e.getMessage());
 		}
 		
 		finally
@@ -153,22 +135,6 @@ public class ConceptDAO implements IConceptDAO{
 				
 				ConceptStatus status = ConceptStatus.values()[rs.getInt("cd_concept_status")];
 				
-				UserDAO userDAO = new UserDAO();
-				User uc = userDAO.findByCode(rs.getInt("cd_creator"));
-				User ue = userDAO.findByCode(rs.getInt("cd_evaluator"));
-				
-				ArtistDAO artistDAO = new ArtistDAO();
-				List<Artist> lstArtist = artistDAO.listAllByConcept(rs.getInt("cd_concept"));
-				
-				MaterialDAO materialDAO = new MaterialDAO();
-				List<MaterialConcept> lstMaterial = materialDAO.listAllByConcept(rs.getInt("cd_concept"));
-
-				ProviderEventRoleDAO providerEventRoleDAO = new ProviderEventRoleDAO();
-				List<ProviderEventRoleConcept> lstEventRole = providerEventRoleDAO.listAllByConcept(rs.getInt("cd_concept"));
-				
-				VenueDAO venueDAO = new VenueDAO();
-				List<Venue> lstVenue = venueDAO.listAllByConcept(rs.getInt("cd_concept"));
-				
 				Concept c = new Concept(
 						rs.getInt("cd_concept"),
 						rs.getString("nm_concept"),
@@ -177,13 +143,9 @@ public class ConceptDAO implements IConceptDAO{
 						ld,
 						status,
 						rs.getString("nm_concept_status"), 
-						uc,
-						ue,
-						lstArtist,
-						lstMaterial,
-						lstEventRole,
-						lstVenue
-					);
+						rs.getInt("cd_creator"),
+						rs.getInt("cd_evaluator")
+				);
 				
 				lst.add(c);				
 			}
@@ -191,7 +153,8 @@ public class ConceptDAO implements IConceptDAO{
 		
 		catch (SQLException e)
 		{
-			System.err.println(this.getClass() + " " + e.getMessage());
+			System.out.println(this.getClass() + " Find All");
+			System.err.println(e.getMessage());
 		}
 		
 		finally
@@ -221,15 +184,16 @@ public class ConceptDAO implements IConceptDAO{
 			Date date = Date.from(c.getCreatedDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
 			stmt.setDate(4, new java.sql.Date(date.getTime()));
 			stmt.setInt(5, c.getStatus().ordinal());
-			stmt.setInt(6, c.getCreator().getCode());
-			stmt.setInt(7, c.getEvaluator().getCode());
+			stmt.setInt(6, c.getCreatorCode());
+			stmt.setInt(7, c.getEvaluatorCode());
 			stmt.setInt(8, c.getCode());
 			
-			stmt.executeUpdate();			
+			stmt.executeUpdate();
 		}
 		catch (SQLException e)
 		{
-			System.err.println(this.getClass() + " " + e.getMessage());
+			System.out.println(this.getClass() + " Update");
+			System.err.println(e.getMessage());
 		}
 		
 		finally
@@ -256,7 +220,8 @@ public class ConceptDAO implements IConceptDAO{
 		}
 		catch (SQLException e)
 		{
-			System.err.println(this.getClass() + " " + e.getMessage());
+			System.out.println(this.getClass() + " Concept");
+			System.err.println(e.getMessage());
 		}
 		
 		finally

@@ -1,6 +1,7 @@
 package sisgem.db;
 
 import java.sql.*;
+import java.lang.Exception;
 import java.time.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,16 +30,17 @@ public class AlertDAO implements IAlertDAO {
 		    Date date = Date.from(instant);
 			stmt.setDate(2, new java.sql.Date(date.getTime()));
 			stmt.setBoolean(3, a.isRead());
-			stmt.setInt(4, a.getUser().getCode());
+			stmt.setInt(4, a.getUserCode());
 			stmt.setInt(5, a.getType().ordinal());
-			stmt.setInt(6, a.getTask().getCode());
-			stmt.setInt(7, a.getConcept().getCode());
+			stmt.setInt(6, a.getTaskCode());
+			stmt.setInt(7, a.getConceptCode());
 			stmt.executeUpdate();
 		}
 		
-		catch (SQLException e)
+		catch (Exception e)
 		{
-			System.err.println(this.getClass() + " " + e.getMessage());
+			System.out.println(this.getClass() + " Create");
+			System.err.println(e.getMessage());
 		}
 		
 		finally
@@ -72,16 +74,7 @@ public class AlertDAO implements IAlertDAO {
 			
 			if (rs.next())
 			{
-				UserDAO userDAO = new UserDAO();
-				User u = userDAO.findByCode(rs.getInt("cd_user"));
-					
 				AlertTypes types = AlertTypes.values()[rs.getInt("cd_alert_type")];
-						
-				TaskDAO taskDAO = new TaskDAO();
-				Task t = taskDAO.findByCode(rs.getInt("cd_task"));
-				
-				ConceptDAO conceptDAO = new ConceptDAO();
-				Concept c = conceptDAO.findByCode(rs.getInt("cd_concept"));
 				
 				Instant instant = Instant.ofEpochMilli(rs.getDate("dt_alert").getTime());
 			    LocalDateTime ldt = LocalDateTime.ofInstant(instant, ZoneOffset.UTC);
@@ -91,21 +84,21 @@ public class AlertDAO implements IAlertDAO {
 						rs.getString("ds_alert"),
 						ldt,
 						rs.getBoolean("fl_read"),
-						u,
+						rs.getInt("cd_user"),
 						types,
 						rs.getString("nm_alert_type"),
-						t,
-						c
+						rs.getInt("cd_task"),
+						rs.getInt("cd_concept")
 				);
 						
 			}
 		}
 		
-		catch (SQLException e)
+		catch (Exception e)
 		{
-			System.err.println(this.getClass() + " " + e.getMessage());
-		}
-		
+			System.out.println(this.getClass() + " Find By Code");
+			System.err.println(e.getMessage());
+		}		
 		finally
 		{
 			Connect.close(conn, stmt, rs);
@@ -136,17 +129,8 @@ public class AlertDAO implements IAlertDAO {
 			
 			while (rs.next())
 			{
-				UserDAO userDAO = new UserDAO();
-				User u = userDAO.findByCode(rs.getInt("cd_user"));
-					
 				AlertTypes types = AlertTypes.values()[rs.getInt("cd_alert_type")];
 						
-				TaskDAO taskDAO = new TaskDAO();
-				Task t = taskDAO.findByCode(rs.getInt("cd_task"));
-				
-				ConceptDAO conceptDAO = new ConceptDAO();
-				Concept c = conceptDAO.findByCode(rs.getInt("cd_concept"));
-				
 				Instant instant = Instant.ofEpochMilli(rs.getDate("dt_alert").getTime());
 			    LocalDateTime ldt = LocalDateTime.ofInstant(instant, ZoneOffset.UTC);
 
@@ -155,20 +139,21 @@ public class AlertDAO implements IAlertDAO {
 						rs.getString("ds_alert"),
 						ldt,
 						rs.getBoolean("fl_read"),
-						u,
+						rs.getInt("cd_user"),
 						types,
 						rs.getString("nm_alert_type"),
-						t,
-						c
+						rs.getInt("cd_task"),
+						rs.getInt("cd_concept")
 				);
 				
 				lst.add(a);						
 			}
 		}
 		
-		catch (SQLException e)
+		catch (Exception e)
 		{
-			System.err.println(this.getClass() + " " + e.getMessage());
+			System.out.println(this.getClass() + " List All By User");
+			System.err.println(e.getMessage());
 		}
 		
 		finally
@@ -197,18 +182,19 @@ public class AlertDAO implements IAlertDAO {
 		    Date date = Date.from(instant);
 			stmt.setDate(2, new java.sql.Date(date.getTime()));
 			stmt.setBoolean(3, a.isRead());
-			stmt.setInt(4, a.getUser().getCode());
+			stmt.setInt(4, a.getUserCode());
 			stmt.setInt(5, a.getType().ordinal());
-			stmt.setInt(6, a.getTask().getCode());
-			stmt.setInt(7, a.getConcept().getCode());
+			stmt.setInt(6, a.getTaskCode());
+			stmt.setInt(7, a.getConceptCode());
 			stmt.setInt(8, a.getCode());
 			
 			stmt.executeUpdate();
 		}
 		
-		catch (SQLException e)
+		catch (Exception e)
 		{
-			System.err.println(this.getClass() + " " + e.getMessage());
+			System.out.println(this.getClass() + " Update");
+			System.err.println(e.getMessage());
 		}
 		
 		finally
@@ -230,9 +216,10 @@ public class AlertDAO implements IAlertDAO {
 			stmt.setInt(1, a.getCode());
 			stmt.executeUpdate();		
 		}
-		catch (SQLException e)
+		catch (Exception e)
 		{
-			System.err.println(this.getClass() + " " + e.getMessage());
+			System.out.println(this.getClass() + " Delete");
+			System.err.println(e.getMessage());
 		}
 		
 		finally

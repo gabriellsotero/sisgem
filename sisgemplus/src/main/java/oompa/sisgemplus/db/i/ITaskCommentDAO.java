@@ -1,0 +1,21 @@
+package oompa.sisgemplus.db.i;
+
+import java.util.List;
+
+import oompa.sisgemplus.model.TaskComment;
+
+public interface ITaskCommentDAO {
+	
+	/* CREATE */
+	public void create(TaskComment t);
+	
+	/* RETRIEVE */
+	public List<TaskComment> listAllByTask(int taskCode);
+	
+	/* UPDATE */
+	public void update(TaskComment t);
+	
+	/* DELETE */
+	public void delete(TaskComment t);
+
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.GridPane?>
+<?import java.net.*?>
+<?scenebuilder-stylesheet styles.css?>
+
+<GridPane xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="oompa.sisgemplus.controllers.CompleteTaskController">
+   <children>
+      <Label text="WITHOUT" />
+   </children>
+   <stylesheets>
+    	<URL value="@styles.css" />
+  	</stylesheets>
+</GridPane>

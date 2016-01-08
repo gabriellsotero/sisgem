@@ -3,20 +3,19 @@ package sisgem.model;
 import javafx.beans.property.*;
 import sisgem.model.enums.*;
 
+import java.lang.reflect.Field;
 import java.time.LocalDate;
-import java.time.chrono.ChronoLocalDate;
-import java.util.List;
 
 public class Task {
 
 	private IntegerProperty code;
-	private ObjectProperty<User> accountable;
-	private ObjectProperty<Artist> artist;
-	private ObjectProperty<User> creator;
-	private ObjectProperty<User> evaluator;
-	private ObjectProperty<Event> event;
-	private ObjectProperty<Material> material;
-	private ObjectProperty<Provider> provider;
+	private IntegerProperty accountableCode;
+	private IntegerProperty artistCode;
+	private IntegerProperty creatorCode;
+	private IntegerProperty evaluatorCode;
+	private IntegerProperty eventCode;
+	private IntegerProperty materialCode;
+	private IntegerProperty providerCode;
 	private ObjectProperty<TaskStatus> status;
 	private ObjectProperty<TaskTypes> type;
 	private StringProperty description;
@@ -24,25 +23,23 @@ public class Task {
 	private ObjectProperty<LocalDate> completedDate;
 	private StringProperty statusText; //not db
 	private StringProperty typeText; //not db
-	private BooleanProperty late;
+	private StringProperty eventName; //not db
 	
-	private ObjectProperty<List<TaskComment>> commentsList;
-
-	public Task (int cCode, User cAccountable, Artist cArtist,
-				User cCreator, User cEvaluator, Event cEvent,
-				Material cMaterial, Provider cProvider, TaskStatus cStatus,
+	public Task (int cCode, int cAccountableCode, int cArtistCode,
+				int cCreatorCode, int cEvaluatorCode, int cEventCode,
+				int cMaterialCode, int cProviderCode, TaskStatus cStatus,
 				TaskTypes cType, String cDescription, LocalDate cTargetDate,
 				LocalDate cCompletedDate, String cStatusText, String cTypeText
 				)
 	{
 		code = new SimpleIntegerProperty(cCode);
-		accountable = new SimpleObjectProperty<User>(cAccountable);
-		artist = new SimpleObjectProperty<Artist>(cArtist);
-		creator = new SimpleObjectProperty<User>(cCreator);
-		evaluator = new SimpleObjectProperty<User>(cEvaluator);
-		event = new SimpleObjectProperty<Event>(cEvent);
-		material = new SimpleObjectProperty<Material>(cMaterial);
-		provider = new SimpleObjectProperty<Provider>(cProvider);
+		accountableCode = new SimpleIntegerProperty(cAccountableCode);
+		artistCode = new SimpleIntegerProperty(cArtistCode);
+		creatorCode = new SimpleIntegerProperty(cCreatorCode);
+		evaluatorCode = new SimpleIntegerProperty(cEvaluatorCode);
+		eventCode = new SimpleIntegerProperty(cEventCode);
+		materialCode = new SimpleIntegerProperty(cMaterialCode);
+		providerCode = new SimpleIntegerProperty(cProviderCode);
 		status = new SimpleObjectProperty<TaskStatus>(cStatus);
 		type = new SimpleObjectProperty<TaskTypes>(cType);
 		description = new SimpleStringProperty(cDescription);
@@ -50,222 +47,273 @@ public class Task {
 		completedDate = new SimpleObjectProperty<LocalDate>(cCompletedDate);
 		statusText = new SimpleStringProperty(cStatusText);
 		typeText = new SimpleStringProperty(cTypeText);
-		
-		if (this.getTargetDate().isBefore(LocalDate.now()))
-		{
-			late = new SimpleBooleanProperty(true);
-		}
-		else
-		{
-			late = new SimpleBooleanProperty(false);
-		}
-
 	}
-		
+
 	public IntegerProperty codeProperty() {
 		return this.code;
 	}
 	
+
 	public int getCode() {
 		return this.codeProperty().get();
 	}
 	
+
 	public void setCode(final int code) {
 		this.codeProperty().set(code);
 	}
 	
-	public ObjectProperty<User> accountableProperty() {
-		return this.accountable;
+
+	public IntegerProperty accountableCodeProperty() {
+		return this.accountableCode;
 	}
 	
-	public sisgem.model.User getAccountable() {
-		return this.accountableProperty().get();
+
+	public int getAccountableCode() {
+		return this.accountableCodeProperty().get();
 	}
 	
-	public void setAccountable(final sisgem.model.User accountable) {
-		this.accountableProperty().set(accountable);
+
+	public void setAccountableCode(final int accountableCode) {
+		this.accountableCodeProperty().set(accountableCode);
 	}
 	
-	public ObjectProperty<Artist> artistProperty() {
-		return this.artist;
+
+	public IntegerProperty artistCodeProperty() {
+		return this.artistCode;
 	}
 	
-	public sisgem.model.Artist getArtist() {
-		return this.artistProperty().get();
+
+	public int getArtistCode() {
+		return this.artistCodeProperty().get();
 	}
 	
-	public void setArtist(final sisgem.model.Artist artist) {
-		this.artistProperty().set(artist);
+
+	public void setArtistCode(final int artistCode) {
+		this.artistCodeProperty().set(artistCode);
 	}
 	
-	public ObjectProperty<User> creatorProperty() {
-		return this.creator;
+
+	public IntegerProperty creatorCodeProperty() {
+		return this.creatorCode;
 	}
 	
-	public sisgem.model.User getCreator() {
-		return this.creatorProperty().get();
+
+	public int getCreatorCode() {
+		return this.creatorCodeProperty().get();
 	}
 	
-	public void setCreator(final sisgem.model.User creator) {
-		this.creatorProperty().set(creator);
+
+	public void setCreatorCode(final int creatorCode) {
+		this.creatorCodeProperty().set(creatorCode);
 	}
 	
-	public ObjectProperty<User> evaluatorProperty() {
-		return this.evaluator;
+
+	public IntegerProperty evaluatorCodeProperty() {
+		return this.evaluatorCode;
 	}
 	
-	public sisgem.model.User getEvaluator() {
-		return this.evaluatorProperty().get();
+
+	public int getEvaluatorCode() {
+		return this.evaluatorCodeProperty().get();
 	}
 	
-	public void setEvaluator(final sisgem.model.User evaluator) {
-		this.evaluatorProperty().set(evaluator);
+
+	public void setEvaluatorCode(final int evaluatorCode) {
+		this.evaluatorCodeProperty().set(evaluatorCode);
 	}
 	
-	public ObjectProperty<Event> eventProperty() {
-		return this.event;
+
+	public IntegerProperty eventCodeProperty() {
+		return this.eventCode;
 	}
 	
-	public sisgem.model.Event getEvent() {
-		return this.eventProperty().get();
+
+	public int getEventCode() {
+		return this.eventCodeProperty().get();
 	}
 	
-	public void setEvent(final sisgem.model.Event event) {
-		this.eventProperty().set(event);
+
+	public void setEventCode(final int eventCode) {
+		this.eventCodeProperty().set(eventCode);
 	}
 	
-	public ObjectProperty<Material> materialProperty() {
-		return this.material;
+
+	public IntegerProperty materialCodeProperty() {
+		return this.materialCode;
 	}
 	
-	public sisgem.model.Material getMaterial() {
-		return this.materialProperty().get();
+
+	public int getMaterialCode() {
+		return this.materialCodeProperty().get();
 	}
 	
-	public void setMaterial(final sisgem.model.Material material) {
-		this.materialProperty().set(material);
+
+	public void setMaterialCode(final int materialCode) {
+		this.materialCodeProperty().set(materialCode);
 	}
 	
-	public ObjectProperty<Provider> providerProperty() {
-		return this.provider;
+
+	public IntegerProperty providerCodeProperty() {
+		return this.providerCode;
 	}
 	
-	public sisgem.model.Provider getProvider() {
-		return this.providerProperty().get();
+
+	public int getProviderCode() {
+		return this.providerCodeProperty().get();
 	}
 	
-	public void setProvider(final sisgem.model.Provider provider) {
-		this.providerProperty().set(provider);
+
+	public void setProviderCode(final int providerCode) {
+		this.providerCodeProperty().set(providerCode);
 	}
 	
+
 	public ObjectProperty<TaskStatus> statusProperty() {
 		return this.status;
 	}
 	
+
 	public sisgem.model.enums.TaskStatus getStatus() {
 		return this.statusProperty().get();
 	}
 	
+
 	public void setStatus(final sisgem.model.enums.TaskStatus status) {
 		this.statusProperty().set(status);
 	}
 	
+
 	public ObjectProperty<TaskTypes> typeProperty() {
 		return this.type;
 	}
 	
+
 	public sisgem.model.enums.TaskTypes getType() {
 		return this.typeProperty().get();
 	}
 	
+
 	public void setType(final sisgem.model.enums.TaskTypes type) {
 		this.typeProperty().set(type);
 	}
 	
+
 	public StringProperty descriptionProperty() {
 		return this.description;
 	}
 	
+
 	public java.lang.String getDescription() {
 		return this.descriptionProperty().get();
 	}
 	
+
 	public void setDescription(final java.lang.String description) {
 		this.descriptionProperty().set(description);
 	}
 	
+
 	public ObjectProperty<LocalDate> targetDateProperty() {
 		return this.targetDate;
 	}
 	
+
 	public java.time.LocalDate getTargetDate() {
 		return this.targetDateProperty().get();
 	}
 	
+
 	public void setTargetDate(final java.time.LocalDate targetDate) {
 		this.targetDateProperty().set(targetDate);
 	}
 	
+
 	public ObjectProperty<LocalDate> completedDateProperty() {
 		return this.completedDate;
 	}
 	
+
 	public java.time.LocalDate getCompletedDate() {
 		return this.completedDateProperty().get();
 	}
 	
+
 	public void setCompletedDate(final java.time.LocalDate completedDate) {
 		this.completedDateProperty().set(completedDate);
 	}
 	
+
 	public StringProperty statusTextProperty() {
 		return this.statusText;
 	}
 	
+
 	public java.lang.String getStatusText() {
 		return this.statusTextProperty().get();
 	}
 	
+
 	public void setStatusText(final java.lang.String statusText) {
 		this.statusTextProperty().set(statusText);
 	}
 	
+
 	public StringProperty typeTextProperty() {
 		return this.typeText;
 	}
 	
+
 	public java.lang.String getTypeText() {
 		return this.typeTextProperty().get();
 	}
 	
+
 	public void setTypeText(final java.lang.String typeText) {
 		this.typeTextProperty().set(typeText);
 	}
-	
-	public BooleanProperty lateProperty() {
-		return this.late;
-	}
-	
-	public boolean isLate() {
-		return this.lateProperty().get();
-	}
-	
-	public void setLate(final boolean isLate) {
-		this.lateProperty().set(isLate);
-	}
 
-	public ObjectProperty<List<TaskComment>> commentsListProperty() {
-		return this.commentsList;
+	public StringProperty eventNameProperty() {
+		return this.eventName;
 	}
 	
 
-	public java.util.List<sisgem.model.TaskComment> getCommentsList() {
-		return this.commentsListProperty().get();
+	public java.lang.String getEventName() {
+		return this.eventNameProperty().get();
 	}
 	
 
-	public void setCommentsList(final java.util.List<sisgem.model.TaskComment> commentsList) {
-		this.commentsListProperty().set(commentsList);
+	public void setEventName(final java.lang.String eventName) {
+		this.eventNameProperty().set(eventName);
 	}
 	
+	@Override
+	public String toString() {
+		  StringBuilder result = new StringBuilder();
+		  String newLine = System.getProperty("line.separator");
+
+		  result.append( this.getClass().getName() );
+		  result.append( " Object {" );
+		  result.append(newLine);
+
+		  //determine fields declared in this class only (no fields of superclass)
+		  Field[] fields = this.getClass().getDeclaredFields();
+
+		  //print field names paired with their values
+		  for ( Field field : fields  ) {
+		    result.append("  ");
+		    try {
+		      result.append( field.getName() );
+		      result.append(": ");
+		      //requires access to private field:
+		      result.append( field.get(this) );
+		    } catch ( IllegalAccessException ex ) {
+		      System.out.println(ex);
+		    }
+		    result.append(newLine);
+		  }
+		  result.append("}");
+
+		  return result.toString();
+		}
 }

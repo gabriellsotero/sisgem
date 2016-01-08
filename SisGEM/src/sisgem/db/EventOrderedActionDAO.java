@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sisgem.db.i.IEventOrderedActionDAO;
-import sisgem.model.Event;
 import sisgem.model.EventOrderedAction;
 
 public class EventOrderedActionDAO implements IEventOrderedActionDAO {
@@ -27,7 +26,7 @@ public class EventOrderedActionDAO implements IEventOrderedActionDAO {
 
 			stmt.setInt(1, e.getOrder());
 			stmt.setString(2, e.getDescription());
-			stmt.setInt(3, e.getEvent().getCode());			
+			stmt.setInt(3, e.getEventCode());			
 			
 			stmt.executeUpdate();
 		}
@@ -63,14 +62,12 @@ public class EventOrderedActionDAO implements IEventOrderedActionDAO {
 			
 			while (rs.next())
 			{
-				EventDAO eventDAO = new EventDAO();
-				Event e = eventDAO.findByCode(rs.getInt("cd_event"));
 
 				EventOrderedAction eoa = new EventOrderedAction
 										(rs.getInt("cd_ordered_action"),
 										rs.getInt("nm_ordered_action_order"),
 										rs.getString("ds_event_ordered_action"),
-										e
+										rs.getInt("cd_event")
 										);
 				
 				lst.add(eoa);					
@@ -110,14 +107,12 @@ public class EventOrderedActionDAO implements IEventOrderedActionDAO {
 			
 			if (rs.next())
 			{
-				EventDAO eventDAO = new EventDAO();
-				Event e = eventDAO.findByCode(rs.getInt("cd_event"));
 
 				eoa = new EventOrderedAction
 						(rs.getInt("cd_ordered_action"),
 						rs.getInt("nm_ordered_action_order"),
 						rs.getString("ds_event_ordered_action"),
-						e
+						rs.getInt("cd_event")
 						);
 			}
 
@@ -149,7 +144,7 @@ public class EventOrderedActionDAO implements IEventOrderedActionDAO {
 			
 			stmt.setInt(1, e.getOrder());
 			stmt.setString(2, e.getDescription());
-			stmt.setInt(3, e.getEvent().getCode());	
+			stmt.setInt(3, e.getEventCode());	
 			
 			stmt.setInt(4, e.getCode());
 			

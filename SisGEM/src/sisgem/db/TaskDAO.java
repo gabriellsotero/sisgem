@@ -3,7 +3,7 @@ package sisgem.db;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.lang.Exception;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -12,13 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 import sisgem.db.i.ITaskDAO;
-import sisgem.model.Artist;
-import sisgem.model.Event;
-import sisgem.model.Material;
-import sisgem.model.Provider;
 import sisgem.model.Task;
-import sisgem.model.User;
-import sisgem.model.enums.EventStatus;
 import sisgem.model.enums.TaskStatus;
 import sisgem.model.enums.TaskTypes;
 
@@ -47,16 +41,16 @@ public class TaskDAO implements ITaskDAO {
 			Date date2 = Date.from(t.getCompletedDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
 			stmt.setDate(4, new java.sql.Date(date2.getTime()));
 			stmt.setInt(5, t.getStatus().ordinal());
-			stmt.setInt(6, t.getEvent().getCode());
-			stmt.setInt(7, t.getCreator().getCode());
-			stmt.setInt(8, t.getEvaluator().getCode());
-			stmt.setInt(9, t.getProvider().getCode());
-			stmt.setInt(10, t.getArtist().getCode());
-			stmt.setInt(11, t.getMaterial().getCode());
+			stmt.setInt(6, t.getEventCode());
+			stmt.setInt(7, t.getCreatorCode());
+			stmt.setInt(8, t.getEvaluatorCode());
+			stmt.setInt(9, t.getProviderCode());
+			stmt.setInt(10, t.getArtistCode());
+			stmt.setInt(11, t.getMaterialCode());
 			
 			stmt.executeUpdate();
 		}
-		catch (SQLException e)
+		catch (Exception e)
 		{
 			System.err.println(this.getClass() + " " + e.getMessage());
 		}
@@ -73,9 +67,9 @@ public class TaskDAO implements ITaskDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT * FROM tb_task"
-					+ "NATURAL JOIN tb_task_status"
-					+ "NATURAL JOIN tb_task_type";
+		String sql = "SELECT * FROM tb_task "
+					+ "NATURAL JOIN tb_task_status "
+					+ "NATURAL JOIN tb_task_type ";
 			
 		List<Task> lst = new ArrayList<Task>();
 		
@@ -98,45 +92,28 @@ public class TaskDAO implements ITaskDAO {
 				
 				TaskStatus status = TaskStatus.values()[rs.getInt("cd_task_status")];
 				
-				EventDAO eventDAO = new EventDAO();
-				Event e = eventDAO.findByCode(rs.getInt("cd_event"));
-				
-				UserDAO userDAO = new UserDAO();
-				User u1 = userDAO.findByCode(rs.getInt("cd_creator"));
-				User u2 = userDAO.findByCode(rs.getInt("cd_evaluator"));
-				User u3 = userDAO.findByCode(rs.getInt("cd_accountable"));
-				
-				ProviderDAO providerDAO = new ProviderDAO();
-				Provider p = providerDAO.findByCode(rs.getInt("cd_provider"));
-				
-				ArtistDAO artistDAO = new ArtistDAO();
-				Artist a = artistDAO.findByCode(rs.getInt("cd_artist"));
-				
-				MaterialDAO materialDAO = new MaterialDAO();
-				Material m = materialDAO.findByCode(rs.getInt("cd_material"));
-				
 				Task t = new Task(rs.getInt("cd_task"),
-						u3,
-						a,
-						u1,
-						u2,
-						e,
-						m,
-						p,
+						rs.getInt("cd_accountable"),
+						rs.getInt("cd_artist"),
+						rs.getInt("cd_creator"),
+						rs.getInt("cd_evaluator"),
+						rs.getInt("cd_event"),
+						rs.getInt("cd_material"),
+						rs.getInt("cd_provider"),
 						status,
 						type,
 						rs.getString("ds_task"),
 						ld,
 						ld2,
 						rs.getString("nm_task_status"),
-						rs.getString("nm_task_type")						
+						rs.getString("nm_task_type")
 				);
-					
+										
 				lst.add(t);
 			}			
 			
 		}
-		catch (SQLException e)
+		catch (Exception e)
 		{
 			System.err.println(this.getClass() + " " + e.getMessage());
 		}
@@ -187,45 +164,28 @@ public class TaskDAO implements ITaskDAO {
 				
 				TaskStatus status = TaskStatus.values()[rs.getInt("cd_task_status")];
 				
-				EventDAO eventDAO = new EventDAO();
-				Event e = eventDAO.findByCode(rs.getInt("cd_event"));
-				
-				UserDAO userDAO = new UserDAO();
-				User u1 = userDAO.findByCode(rs.getInt("cd_creator"));
-				User u2 = userDAO.findByCode(rs.getInt("cd_evaluator"));
-				User u3 = userDAO.findByCode(rs.getInt("cd_accountable"));
-				
-				ProviderDAO providerDAO = new ProviderDAO();
-				Provider p = providerDAO.findByCode(rs.getInt("cd_provider"));
-				
-				ArtistDAO artistDAO = new ArtistDAO();
-				Artist a = artistDAO.findByCode(rs.getInt("cd_artist"));
-				
-				MaterialDAO materialDAO = new MaterialDAO();
-				Material m = materialDAO.findByCode(rs.getInt("cd_material"));
-				
 				Task t = new Task(rs.getInt("cd_task"),
-						u3,
-						a,
-						u1,
-						u2,
-						e,
-						m,
-						p,
+						rs.getInt("cd_accountable"),
+						rs.getInt("cd_artist"),
+						rs.getInt("cd_creator"),
+						rs.getInt("cd_evaluator"),
+						rs.getInt("cd_event"),
+						rs.getInt("cd_material"),
+						rs.getInt("cd_provider"),
 						status,
 						type,
 						rs.getString("ds_task"),
 						ld,
 						ld2,
 						rs.getString("nm_task_status"),
-						rs.getString("nm_task_type")						
+						rs.getString("nm_task_type")
 				);
-					
+										
 				lst.add(t);
 			}			
 			
 		}
-		catch (SQLException e)
+		catch (Exception e)
 		{
 			System.err.println(this.getClass() + " " + e.getMessage());
 		}
@@ -244,9 +204,9 @@ public class TaskDAO implements ITaskDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT * FROM tb_task"
-					+ "NATURAL JOIN tb_task_status"
-					+ "NATURAL JOIN tb_task_type"
+		String sql = "SELECT * FROM tb_task "
+					+ "NATURAL JOIN tb_task_status "
+					+ "NATURAL JOIN tb_task_type "
 					+ "WHERE cd_event = ?";
 			
 		List<Task> lst = new ArrayList<Task>();
@@ -271,45 +231,29 @@ public class TaskDAO implements ITaskDAO {
 				
 				TaskStatus status = TaskStatus.values()[rs.getInt("cd_task_status")];
 				
-				EventDAO eventDAO = new EventDAO();
-				Event e = eventDAO.findByCode(rs.getInt("cd_event"));
-				
-				UserDAO userDAO = new UserDAO();
-				User u1 = userDAO.findByCode(rs.getInt("cd_creator"));
-				User u2 = userDAO.findByCode(rs.getInt("cd_evaluator"));
-				User u3 = userDAO.findByCode(rs.getInt("cd_accountable"));
-				
-				ProviderDAO providerDAO = new ProviderDAO();
-				Provider p = providerDAO.findByCode(rs.getInt("cd_provider"));
-				
-				ArtistDAO artistDAO = new ArtistDAO();
-				Artist a = artistDAO.findByCode(rs.getInt("cd_artist"));
-				
-				MaterialDAO materialDAO = new MaterialDAO();
-				Material m = materialDAO.findByCode(rs.getInt("cd_material"));
-				
 				Task t = new Task(rs.getInt("cd_task"),
-						u3,
-						a,
-						u1,
-						u2,
-						e,
-						m,
-						p,
+						rs.getInt("cd_accountable"),
+						rs.getInt("cd_artist"),
+						rs.getInt("cd_creator"),
+						rs.getInt("cd_evaluator"),
+						rs.getInt("cd_event"),
+						rs.getInt("cd_material"),
+						rs.getInt("cd_provider"),
 						status,
 						type,
 						rs.getString("ds_task"),
 						ld,
 						ld2,
 						rs.getString("nm_task_status"),
-						rs.getString("nm_task_type")						
+						rs.getString("nm_task_type")
 				);
+					
 					
 				lst.add(t);
 			}			
 			
 		}
-		catch (SQLException e)
+		catch (Exception e)
 		{
 			System.err.println(this.getClass() + " " + e.getMessage());
 		}
@@ -328,9 +272,9 @@ public class TaskDAO implements ITaskDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT * FROM tb_task"
-					+ "NATURAL JOIN tb_task_status"
-					+ "NATURAL JOIN tb_task_type"
+		String sql = "SELECT * FROM tb_task "
+					+ "NATURAL JOIN tb_task_status "
+					+ "NATURAL JOIN tb_task_type "
 					+ "WHERE cd_task_status = ?";
 			
 		List<Task> lst = new ArrayList<Task>();
@@ -355,45 +299,28 @@ public class TaskDAO implements ITaskDAO {
 				
 				TaskStatus status = TaskStatus.values()[rs.getInt("cd_task_status")];
 				
-				EventDAO eventDAO = new EventDAO();
-				Event e = eventDAO.findByCode(rs.getInt("cd_event"));
-				
-				UserDAO userDAO = new UserDAO();
-				User u1 = userDAO.findByCode(rs.getInt("cd_creator"));
-				User u2 = userDAO.findByCode(rs.getInt("cd_evaluator"));
-				User u3 = userDAO.findByCode(rs.getInt("cd_accountable"));
-				
-				ProviderDAO providerDAO = new ProviderDAO();
-				Provider p = providerDAO.findByCode(rs.getInt("cd_provider"));
-				
-				ArtistDAO artistDAO = new ArtistDAO();
-				Artist a = artistDAO.findByCode(rs.getInt("cd_artist"));
-				
-				MaterialDAO materialDAO = new MaterialDAO();
-				Material m = materialDAO.findByCode(rs.getInt("cd_material"));
-				
 				Task t = new Task(rs.getInt("cd_task"),
-						u3,
-						a,
-						u1,
-						u2,
-						e,
-						m,
-						p,
+						rs.getInt("cd_accountable"),
+						rs.getInt("cd_artist"),
+						rs.getInt("cd_creator"),
+						rs.getInt("cd_evaluator"),
+						rs.getInt("cd_event"),
+						rs.getInt("cd_material"),
+						rs.getInt("cd_provider"),
 						status,
 						type,
 						rs.getString("ds_task"),
 						ld,
 						ld2,
 						rs.getString("nm_task_status"),
-						rs.getString("nm_task_type")						
+						rs.getString("nm_task_type")
 				);
 					
 				lst.add(t);
 			}			
 			
 		}
-		catch (SQLException e)
+		catch (Exception e)
 		{
 			System.err.println(this.getClass() + " " + e.getMessage());
 		}
@@ -412,9 +339,9 @@ public class TaskDAO implements ITaskDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT * FROM tb_task"
-					+ "NATURAL JOIN tb_task_status"
-					+ "NATURAL JOIN tb_task_type"
+		String sql = "SELECT * FROM tb_task "
+					+ "NATURAL JOIN tb_task_status "
+					+ "NATURAL JOIN tb_task_type "
 					+ "WHERE cd_task = ?";
 			
 		Task t = null;
@@ -435,47 +362,34 @@ public class TaskDAO implements ITaskDAO {
 				LocalDate ld = Instant.ofEpochMilli(d.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
 				
 			   	Date d2 = rs.getDate("dt_completed");
-				LocalDate ld2 = Instant.ofEpochMilli(d2.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
+			   	LocalDate ld2 = null;
+			   	
+			   	if (d2 != null)
+			   		ld2 = Instant.ofEpochMilli(d2.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
 				
 				TaskStatus status = TaskStatus.values()[rs.getInt("cd_task_status")];
 				
-				EventDAO eventDAO = new EventDAO();
-				Event e = eventDAO.findByCode(rs.getInt("cd_event"));
-				
-				UserDAO userDAO = new UserDAO();
-				User u1 = userDAO.findByCode(rs.getInt("cd_creator"));
-				User u2 = userDAO.findByCode(rs.getInt("cd_evaluator"));
-				User u3 = userDAO.findByCode(rs.getInt("cd_accountable"));
-				
-				ProviderDAO providerDAO = new ProviderDAO();
-				Provider p = providerDAO.findByCode(rs.getInt("cd_provider"));
-				
-				ArtistDAO artistDAO = new ArtistDAO();
-				Artist a = artistDAO.findByCode(rs.getInt("cd_artist"));
-				
-				MaterialDAO materialDAO = new MaterialDAO();
-				Material m = materialDAO.findByCode(rs.getInt("cd_material"));
-				
 				t = new Task(rs.getInt("cd_task"),
-						u3,
-						a,
-						u1,
-						u2,
-						e,
-						m,
-						p,
+						rs.getInt("cd_accountable"),
+						rs.getInt("cd_artist"),
+						rs.getInt("cd_creator"),
+						rs.getInt("cd_evaluator"),
+						rs.getInt("cd_event"),
+						rs.getInt("cd_material"),
+						rs.getInt("cd_provider"),
 						status,
 						type,
 						rs.getString("ds_task"),
 						ld,
 						ld2,
 						rs.getString("nm_task_status"),
-						rs.getString("nm_task_type")						
+						rs.getString("nm_task_type")
 				);
+					
 			}			
 			
 		}
-		catch (SQLException e)
+		catch (Exception e)
 		{
 			System.err.println(this.getClass() + " " + e.getMessage());
 		}
@@ -510,17 +424,17 @@ public class TaskDAO implements ITaskDAO {
 			Date date2 = Date.from(t.getCompletedDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
 			stmt.setDate(4, new java.sql.Date(date2.getTime()));
 			stmt.setInt(5, t.getStatus().ordinal());
-			stmt.setInt(6, t.getEvent().getCode());
-			stmt.setInt(7, t.getCreator().getCode());
-			stmt.setInt(8, t.getEvaluator().getCode());
-			stmt.setInt(9, t.getProvider().getCode());
-			stmt.setInt(10, t.getArtist().getCode());
-			stmt.setInt(11, t.getMaterial().getCode());
+			stmt.setInt(6, t.getEventCode());
+			stmt.setInt(7, t.getCreatorCode());
+			stmt.setInt(8, t.getEvaluatorCode());
+			stmt.setInt(9, t.getProviderCode());
+			stmt.setInt(10, t.getArtistCode());
+			stmt.setInt(11, t.getMaterialCode());
 			
 			stmt.setInt(12, t.getCode());
 			stmt.executeUpdate();
 		}
-		catch (SQLException e)
+		catch (Exception e)
 		{
 			System.err.println(this.getClass() + " " + e.getMessage());
 		}
@@ -544,7 +458,7 @@ public class TaskDAO implements ITaskDAO {
 			stmt.setInt(1, t.getCode());
 			stmt.executeUpdate();		
 		}
-		catch (SQLException e)
+		catch (Exception e)
 		{
 			System.err.println(this.getClass() + " " + e.getMessage());
 		}

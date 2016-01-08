@@ -11,17 +11,17 @@ public class EventEntry {
 	private StringProperty description;
 	private FloatProperty value;
 	private IntegerProperty qty;
-	private ObjectProperty<Event> event;
+	private IntegerProperty eventCode;
 	
 	public EventEntry (int cCode, EventEntryTypes cType, String cTypeText,
-						float cValue, int cQty, Event cEvent)
+						float cValue, int cQty, int cEvent)
 	{
 		code = new SimpleIntegerProperty(cCode);
 		type = new SimpleObjectProperty<EventEntryTypes>(cType);
 		typeText = new SimpleStringProperty(cTypeText);
 		value = new SimpleFloatProperty(cValue);
 		qty = new SimpleIntegerProperty(cQty);
-		event = new SimpleObjectProperty<Event>(cEvent);
+		eventCode = new SimpleIntegerProperty(cEvent);
 	}
 	
 	public IntegerProperty codeProperty() {
@@ -98,17 +98,18 @@ public class EventEntry {
 	public void setQty(final int qty) {
 		this.qtyProperty().set(qty);
 	}
-	
-	public ObjectProperty<Event> eventProperty() {
-		return this.event;
-	}
-	
-	public sisgem.model.Event getEvent() {
-		return this.eventProperty().get();
-	}
-	
-	public void setEvent(final sisgem.model.Event event) {
-		this.eventProperty().set(event);
-	}
 
+	public IntegerProperty eventCodeProperty() {
+		return this.eventCode;
+	}
+	
+
+	public int getEventCode() {
+		return this.eventCodeProperty().get();
+	}
+	
+
+	public void setEventCode(final int eventCode) {
+		this.eventCodeProperty().set(eventCode);
+	}
 }

@@ -12,6 +12,7 @@ public interface IEventDAO {
 	/* RETRIEVE */
 	public Event findByCode(int code);
 	public List <Event> listAll();
+	public String findNameByCode(int code);
 	
 	/* UPDATE */
 	public void update(Event e);

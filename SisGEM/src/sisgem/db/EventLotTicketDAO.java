@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sisgem.db.i.IEventLotTicketDAO;
-import sisgem.model.Event;
 import sisgem.model.EventLotTicket;
 
 public class EventLotTicketDAO implements IEventLotTicketDAO {
@@ -30,7 +29,7 @@ public class EventLotTicketDAO implements IEventLotTicketDAO {
 			stmt.setFloat(2, e.getValue());
 			stmt.setFloat(3,e.getSympla());
 			stmt.setInt(4, e.getQty());
-			stmt.setInt(5, e.getEvent().getCode());
+			stmt.setInt(5, e.getEventCode());
 			
 			stmt.executeUpdate();			
 		}		
@@ -66,9 +65,6 @@ public class EventLotTicketDAO implements IEventLotTicketDAO {
 			
 			while (rs.next())
 			{
-			
-				EventDAO eventDAO = new EventDAO();
-				Event e = eventDAO.findByCode(rs.getInt("cd_event"));
 				
 				EventLotTicket elt = new EventLotTicket(
 											eventCode,
@@ -76,7 +72,7 @@ public class EventLotTicketDAO implements IEventLotTicketDAO {
 											rs.getFloat("vl_event_lot_ticket"),
 											rs.getFloat("vl_event_lot_ticket_sympla_perc"),
 											rs.getInt("qt_event_lot_ticket"),
-											e
+											rs.getInt("cd_event")
 											);
 				
 				lst.add(elt);
@@ -117,17 +113,14 @@ public class EventLotTicketDAO implements IEventLotTicketDAO {
 			if (rs.next())
 			{
 
-				EventDAO eventDAO = new EventDAO();
-				Event e = eventDAO.findByCode(rs.getInt("cd_event"));
-				
 				elt = new EventLotTicket(
 						code,
 						rs.getString("nm_event_lot_ticket"),
 						rs.getFloat("vl_event_lot_ticket"),
 						rs.getFloat("vl_event_lot_ticket_sympla_perc"),
 						rs.getInt("qt_event_lot_ticket"),
-						e
-						);				
+						rs.getInt("cd_event")
+				);				
 			}
 
 		}
@@ -161,7 +154,7 @@ public class EventLotTicketDAO implements IEventLotTicketDAO {
 			stmt.setFloat(2, e.getValue());
 			stmt.setFloat(3,e.getSympla());
 			stmt.setInt(4, e.getQty());
-			stmt.setInt(5, e.getEvent().getCode());
+			stmt.setInt(5, e.getEventCode());
 			
 			stmt.setInt(6, e.getCode());
 			

@@ -9,17 +9,17 @@ public class EventLotTicket {
 	private FloatProperty value;
 	private FloatProperty sympla;
 	private IntegerProperty qty;
-	private ObjectProperty<Event> event;
+	private IntegerProperty eventCode;
 	
 	public EventLotTicket(int cCode, String cName, float cValue,
-							float cSympla, int cQty, Event cEvent)
+							float cSympla, int cQty, int cEventCode)
 	{
 		code = new SimpleIntegerProperty(cCode);
 		name = new SimpleStringProperty(cName);
 		value = new SimpleFloatProperty(cValue);
 		sympla = new SimpleFloatProperty(cSympla);
 		qty = new SimpleIntegerProperty(cQty);
-		event = new SimpleObjectProperty<Event>(cEvent);
+		eventCode = new SimpleIntegerProperty(cEventCode);
 	}
 	
 	public IntegerProperty codeProperty() {
@@ -82,18 +82,15 @@ public class EventLotTicket {
 		this.qtyProperty().set(qty);
 	}
 
-	public ObjectProperty<Event> eventProperty() {
-		return this.event;
+	public IntegerProperty eventCodeProperty() {
+		return this.eventCode;
 	}
 	
-
-	public sisgem.model.Event getEvent() {
-		return this.eventProperty().get();
+	public int getEventCode() {
+		return this.eventCodeProperty().get();
 	}
 	
-
-	public void setEvent(final sisgem.model.Event event) {
-		this.eventProperty().set(event);
+	public void setEventCode(final int eventCode) {
+		this.eventCodeProperty().set(eventCode);
 	}
-		
 }

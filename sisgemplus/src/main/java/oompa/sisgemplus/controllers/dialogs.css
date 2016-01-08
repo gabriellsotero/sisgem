@@ -1,0 +1,24 @@
+.dialog-pane {
+    -fx-background-color: rgb(225.0,240.0,203.0);
+    -fx-base: rgb(11.0,72.0,107.0);
+    -fx-font-family: "Arial";
+    -fx-text-fill: rgb(11.0,72.0,107.0);
+}
+
+.dialog-pane .label {
+
+	-fx-fill: rgb(11.0,72.0,107.0);
+	-fx-text-fill: rgb(11.0,72.0,107.0);
+}
+
+.dialog-pane:header .header-panel {
+    -fx-background-color: rgb(225.0,240.0,203.0);
+}
+
+.text-field{
+	-fx-background-color: rgb(225.0,240.0,203.0);
+	-fx-border-color: rgb(59.0,134.0,134.0);
+	-fx-border-radius: 3.0;
+	-fx-font-size: 10.0pt;
+	-fx-text-fill: rgb(11.0,72.0,107.0);
+}

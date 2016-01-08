@@ -8,7 +8,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sisgem.controllers.MainController;
-import sisgem.db.EventDAO;
 import sisgem.utils.Navigator;
 
 import java.io.IOException;

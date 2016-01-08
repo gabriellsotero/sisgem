@@ -8,10 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sisgem.db.i.IProviderDAO;
-import sisgem.model.Contact;
 import sisgem.model.Provider;
 import sisgem.model.ProviderEvent;
-import sisgem.model.ProviderEventRole;
 
 public class ProviderDAO implements IProviderDAO {
 
@@ -28,9 +26,9 @@ public class ProviderDAO implements IProviderDAO {
 			stmt = conn.prepareStatement(sql);
 			
 			stmt.setString(1, p.getName());
-			stmt.setInt(2, p.getEventRole().getCode());
+			stmt.setInt(2, p.getEventRoleCode());
 			stmt.setBytes(3, p.getPhoto());
-			stmt.setInt(4, p.getContact().getCode());
+			stmt.setInt(4, p.getContactCode());
 			stmt.setFloat(5, p.getValue());
 			stmt.setString(6, p.getName());
 			
@@ -67,18 +65,12 @@ public class ProviderDAO implements IProviderDAO {
 			
 			if (rs.next())
 			{
-				ProviderEventRoleDAO providereventroleDAO = new ProviderEventRoleDAO();
-				ProviderEventRole per = providereventroleDAO.findByCode(rs.getInt("cd_provider_eventrole"));
-				
-				ContactDAO contactDAO = new ContactDAO();
-				Contact c = contactDAO.findByCode(rs.getInt("cd_contact"));
-				
 				p = new Provider(
 						code,
 						rs.getString("nm_provider"),
-						per,
+						rs.getInt("cd_provider_eventrole"),
 						rs.getBytes("ph_provider"),
-						c,
+						rs.getInt("cd_contact"),
 						rs.getFloat("vl_provider_avg"),
 						rs.getString("ds_provider_comment")							
 				);
@@ -119,18 +111,13 @@ public class ProviderDAO implements IProviderDAO {
 			
 			while (rs.next())
 			{			
-				ProviderEventRoleDAO providereventroleDAO = new ProviderEventRoleDAO();
-				ProviderEventRole per = providereventroleDAO.findByCode(rs.getInt("cd_provider_eventrole"));
-				
-				ContactDAO contactDAO = new ContactDAO();
-				Contact c = contactDAO.findByCode(rs.getInt("cd_contact"));
 				
 				Provider p = new Provider(
 							rs.getInt("cd_provider"),
 							rs.getString("nm_provider"),
-							per,
+							rs.getInt("cd_provider_eventrole"),
 							rs.getBytes("ph_provider"),
-							c,
+							rs.getInt("cd_contact"),
 							rs.getFloat("vl_provider_avg"),
 							rs.getString("ds_provider_comment")				
 						
@@ -173,18 +160,12 @@ public class ProviderDAO implements IProviderDAO {
 			
 			while (rs.next())
 			{			
-				ProviderEventRoleDAO providereventroleDAO = new ProviderEventRoleDAO();
-				ProviderEventRole per = providereventroleDAO.findByCode(rs.getInt("cd_provider_eventrole"));
-				
-				ContactDAO contactDAO = new ContactDAO();
-				Contact c = contactDAO.findByCode(rs.getInt("cd_contact"));
-				
 				Provider p = new Provider(
 							rs.getInt("cd_provider"),
 							rs.getString("nm_provider"),
-							per,
+							rs.getInt("cd_provider_eventrole"),
 							rs.getBytes("ph_provider"),
-							c,
+							rs.getInt("cd_contact"),
 							rs.getFloat("vl_provider_avg"),
 							rs.getString("ds_provider_comment")							
 				);
@@ -219,9 +200,9 @@ public class ProviderDAO implements IProviderDAO {
 			stmt = conn.prepareStatement(sql);
 			
 			stmt.setString(1, p.getName());
-			stmt.setInt(2, p.getEventRole().getCode());
+			stmt.setInt(2, p.getEventRoleCode());
 			stmt.setBytes(3, p.getPhoto());
-			stmt.setInt(4, p.getContact().getCode());
+			stmt.setInt(4, p.getContactCode());
 			stmt.setFloat(5, p.getValue());
 			stmt.setString(6, p.getName());
 			

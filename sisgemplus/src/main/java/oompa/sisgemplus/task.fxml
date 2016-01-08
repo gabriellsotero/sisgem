@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import java.net.*?>
+<?scenebuilder-stylesheet styles.css?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="450.0" minWidth="450.0" prefHeight="450.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="oompa.sisgemplus.controllers.TaskController">
+   <children>
+      <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="450.0" minWidth="450.0" prefHeight="450.0" prefWidth="450.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="label_title" styleClass="elevenPx" text="Informações da Tarefa" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label fx:id="label_description" text="Descrição:" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <styleClass>
+                  <String fx:value="elevenPx" />
+                  <String fx:value="bold" />
+               </styleClass>
+            </Label>
+            <Label fx:id="label_description_info" styleClass="elevenPx" text="Label" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label fx:id="label_event" text="Evento:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <styleClass>
+                  <String fx:value="elevenPx" />
+                  <String fx:value="bold" />
+               </styleClass></Label>
+            <Label fx:id="label_event_info" styleClass="elevenPx" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding></Label>
+            <Label fx:id="label_accountable" text="Responsável:" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <styleClass>
+                  <String fx:value="elevenPx" />
+                  <String fx:value="bold" />
+               </styleClass>
+            </Label>
+            <Label fx:id="label_accountable_info" styleClass="elevenPx" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label fx:id="label_creator" text="Criada por:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <styleClass>
+                  <String fx:value="elevenPx" />
+                  <String fx:value="bold" />
+               </styleClass>
+            </Label>
+            <Label fx:id="label_target_date" text="Data-alvo:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <styleClass>
+                  <String fx:value="elevenPx" />
+                  <String fx:value="bold" />
+               </styleClass>
+            </Label>
+            <Label fx:id="label_creator_info" styleClass="elevenPx" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="2">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label fx:id="label_target_date_info" styleClass="elevenPx" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="3">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label fx:id="label_type" text="Tipo da tarefa:" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <styleClass>
+                  <String fx:value="elevenPx" />
+                  <String fx:value="bold" />
+               </styleClass>
+            </Label>
+            <Label fx:id="label_type_info" styleClass="elevenPx" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label fx:id="label_status" text="Status:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <styleClass>
+                  <String fx:value="elevenPx" />
+                  <String fx:value="bold" />
+               </styleClass>
+            </Label>
+            <Label fx:id="label_status_info" styleClass="elevenPx" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="4">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding></Label>
+            <Label fx:id="label_comments" text="Comentários:" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <styleClass>
+                  <String fx:value="elevenPx" />
+                  <String fx:value="bold" />
+               </styleClass></Label>
+            <TableView fx:id="tableview_comments" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.rowIndex="6">
+              <columns>
+                <TableColumn fx:id="tablecolumn_user" editable="false" maxWidth="500.0" minWidth="80.0" resizable="false" sortable="false" text="Usuário" />
+                <TableColumn fx:id="tablecolumn_comment" editable="false" maxWidth="500.0" minWidth="80.0" resizable="false" sortable="false" text="Comentário" />
+                  <TableColumn fx:id="tablecolumn_date" editable="false" maxWidth="500.0" minWidth="80.0" resizable="false" sortable="false" text="Data" />
+              </columns>
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </GridPane.margin>
+            </TableView>
+            <HBox fx:id="hbox_buttons" alignment="CENTER_RIGHT" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="157.0" GridPane.columnSpan="2147483647" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
+               <children>
+                  <Button fx:id="button_edittask" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#editTask" styleClass="elevenPx" text="Editar tarefa">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+					 <styleClass>
+			         	<String fx:value="elevenPx" />
+			            <String fx:value="bold" />
+			         </styleClass>
+                  </Button>
+                  <Button fx:id="button_completetask" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#completeTask" styleClass="elevenPx" text="Completar tarefa">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+					 <styleClass>
+			         	<String fx:value="elevenPx" />
+			            <String fx:value="bold" />
+			         </styleClass>
+                  </Button>
+                  <Button fx:id="button_addcomment" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#addComment" styleClass="elevenPx" text="Comentar">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+					 <styleClass>
+			         	<String fx:value="elevenPx" />
+			            <String fx:value="bold" />
+			         </styleClass>
+                  </Button>
+                  <Button fx:id="button_approvetask" mnemonicParsing="false" onAction="#approveTask" text="Aprovar">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <styleClass>
+                        <String fx:value="elevenPx" />
+                        <String fx:value="bold" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="button_rejecttask" mnemonicParsing="false" onAction="#rejectTask" text="Reprovar">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <styleClass>
+                        <String fx:value="elevenPx" />
+                        <String fx:value="bold" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </GridPane>
+   </children>
+       <stylesheets>
+    <URL value="@styles.css" />
+  	</stylesheets>
+</AnchorPane>

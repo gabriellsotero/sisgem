@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.GridPane?>
+<?import java.net.*?>
+<?scenebuilder-stylesheet styles.css?>
+
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="250.0" minWidth="450.0" prefHeight="250.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sisgem.controllers.CompleteTaskController">
+   <children>
+      <Label fx:id="label_title" text="Completar tarefa" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+         <styleClass>
+            <String fx:value="elevenPx" />
+            <String fx:value="bold" />
+         </styleClass>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding></Label>
+      <Separator prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" />
+      <Label fx:id="label_taskname" styleClass="elevenPx" text="Tarefa:" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Label>
+      <Separator prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+      <Label fx:id="label_value" text="Valor da contratação" GridPane.rowIndex="4">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <styleClass>
+            <String fx:value="elevenPx" />
+            <String fx:value="bold" />
+         </styleClass>
+      </Label>
+      <HBox fx:id="hbox_value" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+         <children>
+            <Label fx:id="label_sign" styleClass="elevenPx" text="R$">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="textfield_value" maxWidth="100.0" minWidth="100.0" prefWidth="100.0">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </TextField>
+         </children>
+      </HBox>
+      <Label fx:id="label_addcomment" text="Adicionar comentário (opcional)" GridPane.rowIndex="5">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <styleClass>
+            <String fx:value="elevenPx" />
+            <String fx:value="bold" />
+         </styleClass>
+      </Label>
+      <TextField fx:id="textfield_comment" GridPane.columnSpan="2147483647" GridPane.rowIndex="6">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </TextField>
+      <Separator prefWidth="200.0" GridPane.rowIndex="7" />
+      <Button fx:id="btn_completetext" mnemonicParsing="false" text="Cancelar" GridPane.halignment="LEFT" GridPane.rowIndex="8">
+         <styleClass>
+            <String fx:value="elevenPx" />
+            <String fx:value="bold" />
+         </styleClass>
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </Button>
+      <Button fx:id="btn_completetask" mnemonicParsing="false" text="Completar tarefa" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="8">
+         <styleClass>
+            <String fx:value="elevenPx" />
+            <String fx:value="bold" />
+         </styleClass>
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </Button>
+   </children>
+   <columnConstraints>
+      <ColumnConstraints minWidth="-Infinity" percentWidth="50.0" />
+      <ColumnConstraints minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" percentHeight="17.0" prefHeight="30.0" />
+      <RowConstraints percentHeight="1.0" />
+      <RowConstraints percentHeight="16.0" />
+      <RowConstraints percentHeight="1.0" />
+      <RowConstraints minHeight="10.0" percentHeight="16.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" percentHeight="16.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" percentHeight="16.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" percentHeight="1.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" percentHeight="16.0" prefHeight="30.0" />
+   </rowConstraints>
+      <stylesheets>
+    	<URL value="@styles.css" />
+  	</stylesheets>
+</GridPane>

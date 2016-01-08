@@ -32,7 +32,8 @@ public class ContactDAO implements IContactDAO {
 		}
 		catch (SQLException e)
 		{
-			System.err.println(this.getClass() + " " + e.getMessage());
+			System.out.println(this.getClass() + " Create");
+			System.err.println(e.getMessage());
 		}
 		
 		finally
@@ -74,9 +75,9 @@ public class ContactDAO implements IContactDAO {
 		}
 		catch (SQLException e)
 		{
-			System.err.println(this.getClass() + " " + e.getMessage());
+			System.out.println(this.getClass() + " Find By Code");
+			System.err.println(e.getMessage());
 		}
-
 		finally
 		{
 			Connect.close(conn, stmt, rs);
@@ -107,7 +108,8 @@ public class ContactDAO implements IContactDAO {
 		}
 		catch (SQLException e)
 		{
-			System.err.println(this.getClass() + " " + e.getMessage());
+			System.out.println(this.getClass() + " Update");
+			System.err.println(e.getMessage());
 		}
 		
 		finally
@@ -133,7 +135,8 @@ public class ContactDAO implements IContactDAO {
 		}
 		catch (SQLException e)
 		{
-			System.err.println(this.getClass() + " " + e.getMessage());
+			System.out.println(this.getClass() + " Delete");
+			System.err.println(e.getMessage());
 		}
 		
 		finally

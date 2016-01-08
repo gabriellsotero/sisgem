@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.GridPane?>
+<?import java.net.*?>
+<?scenebuilder-stylesheet styles.css?>
+
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="200.0" minWidth="450.0" prefHeight="250.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="oompa.sisgemplus.controllers.CompleteTaskController">
+   <children>
+      <Label fx:id="label_title" text="Completar tarefa" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+         <styleClass>
+            <String fx:value="elevenPx" />
+            <String fx:value="bold" />
+         </styleClass>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding></Label>
+      <Separator prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="2" />
+      <Label fx:id="label_message" alignment="CENTER" styleClass="elevenPx" text="Label" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Label>
+      <Label fx:id="label_value" text="Valor da contratação:" GridPane.rowIndex="5">
+         <styleClass>
+            <String fx:value="elevenPx" />
+            <String fx:value="bold" />
+         </styleClass>
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </Label>
+      <Separator prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="4" />
+      <HBox fx:id="hbox_value" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+         <children>
+            <Label fx:id="label_rs" alignment="CENTER" styleClass="elevenPx" text="R$">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="textfield_value" maxWidth="50.0" minWidth="100.0" prefWidth="100.0">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </TextField>
+         </children>
+      </HBox>
+      <Label fx:id="label_addcomment" text="Adicionar comentário (opcional):" GridPane.columnSpan="2147483647" GridPane.rowIndex="6">
+         <styleClass>
+            <String fx:value="elevenPx" />
+            <String fx:value="bold" />
+         </styleClass>
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </Label>
+      <TextField fx:id="textfield_comment" GridPane.columnSpan="2147483647" GridPane.rowIndex="7">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </TextField>
+      <Separator prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="8" />
+      <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="9">
+         <left>
+            <Button fx:id="button_cancel" cancelButton="true" mnemonicParsing="false" onAction="#cancelCompletion" text="Cancelar" BorderPane.alignment="CENTER">
+               <styleClass>
+                  <String fx:value="elevenPx" />
+                  <String fx:value="cancelButton" />
+                  <String fx:value="bold" />
+               </styleClass>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <BorderPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </BorderPane.margin>
+            </Button>
+         </left>
+         <right>
+            <Button fx:id="button_confirm" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#completeTask" text="Confirmar" BorderPane.alignment="CENTER">
+               <styleClass>
+                  <String fx:value="elevenPx" />
+                  <String fx:value="confirmButton" />
+                  <String fx:value="bold" />
+               </styleClass>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <BorderPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </BorderPane.margin>
+            </Button>
+         </right>
+         <center>
+            <Label fx:id="label_statusbar" text="Valor inválido! Exemplo: 100.00" visible="false" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </children>
+   <columnConstraints>
+      <ColumnConstraints minWidth="-Infinity" percentWidth="50.0" />
+      <ColumnConstraints minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints percentHeight="20.0" />
+      <RowConstraints percentHeight="1.0" />
+      <RowConstraints percentHeight="16.0" />
+      <RowConstraints percentHeight="1.0" />
+      <RowConstraints percentHeight="15.0" />
+      <RowConstraints percentHeight="15.0" />
+      <RowConstraints minHeight="10.0" percentHeight="15.0" />
+      <RowConstraints percentHeight="1.0" />
+      <RowConstraints percentHeight="16.0" />
+   </rowConstraints>
+      <stylesheets>
+    	<URL value="@styles.css" />
+  	</stylesheets>
+</GridPane>
